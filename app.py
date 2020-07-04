@@ -23,6 +23,13 @@ def index():
     print("db_content: ", db_content)
     n_of_users = mongodb.db.users.count_documents({})
     print("N of users: ", n_of_users)
+    the_user = mongodb.db.users.find_one({"name": "Test User"})
+    print("the_user: ", the_user)
+    for key in the_user:
+        print("key: ", key)
+
+    # mongodb.db.users.insert_one({"name": "One more test user"})
+
     return render_template('index.html', n_of_users=n_of_users)
 
 
