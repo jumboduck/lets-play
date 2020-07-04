@@ -1,4 +1,5 @@
 import os
+<<<<<<< HEAD
 
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
@@ -27,6 +28,9 @@ def index():
     print("the_user: ", the_user)
     for key in the_user:
         print("key: ", key)
+
+    # mongodb.db.users.insert_one({"name": "One more test user"})
+
     return render_template('index.html', n_of_users=n_of_users)
 
 
@@ -35,3 +39,21 @@ if __name__ =='__main__':
         host=os.environ.get('IP'),
         port=os.environ.get('PORT'),
         debug=True)
+=======
+from flask import Flask, render_template, url_for, redirect, request, flash, session
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+
+    return render_template("public/index.html")
+
+
+if __name__ == '__main__':
+    app.run(host=os.environ.get('IP'),
+    port=os.environ.get('PORT'),
+    debug=True)
+>>>>>>> upstream/master
