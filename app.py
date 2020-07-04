@@ -27,9 +27,6 @@ def index():
     print("the_user: ", the_user)
     for key in the_user:
         print("key: ", key)
-
-    # mongodb.db.users.insert_one({"name": "One more test user"})
-
     return render_template('index.html', n_of_users=n_of_users)
 
 
