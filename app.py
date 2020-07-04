@@ -21,15 +21,9 @@ mongodb = PyMongo(app)
 def index():
     db_content = mongodb.db.users.find()
     print("db_content: ", db_content)
-    """
-    # Failed attempt 1:
     n_of_users = mongodb.db.users.count_documents({})
     print("N of users: ", n_of_users)
-    #Failed attempt 2:
-    the_user = mongodb.db.users.find_one({"name": "Test User"})
-    print("the_user: ", the_user)
-    """
-    return render_template('index.html')
+    return render_template('index.html', n_of_users=n_of_users)
 
 
 if __name__ =='__main__':
