@@ -1,11 +1,12 @@
-import os
-<<<<<<< HEAD
-from datetime import datetime
-from flask import Flask, redirect, render_template, request, session, url_for, flash
-from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
-
+from flask import Flask, render_template, redirect, request, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from bson.objectid import ObjectId
+from flask_pymongo import PyMongo
+from flask import Flask, redirect, render_template, request, session, url_for, flash
+from datetime import datetime
+import os
+<< << << < HEAD
+
 
 app = Flask(__name__)
 app.secret_key = "randomstring123"
@@ -64,11 +65,10 @@ def login():
             flash("User does not exist")
             return redirect(url_for('register'))
     return render_template('login.html')
-=======
 
-from flask import Flask, render_template, redirect, request, url_for, session
-from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
+
+== == == =
+
 
 if os.path.exists('env.py'):
     import env
@@ -96,9 +96,9 @@ def index():
     return render_template('public/index.html', n_of_users=n_of_users)
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     app.run(
         host=os.environ.get('IP'),
         port=os.environ.get('PORT'),
         debug=True)
->>>>>>> upstream/master
+>>>>>> > upstream/master
