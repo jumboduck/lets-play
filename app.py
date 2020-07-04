@@ -27,7 +27,7 @@ def index():
     print("the_user: ", the_user)
     for key in the_user:
         print("key: ", key)
-    return render_template('index.html', n_of_users=n_of_users)
+    return render_template('public/index.html', n_of_users=n_of_users)
 
 
 if __name__ =='__main__':
