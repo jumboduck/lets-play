@@ -1,0 +1,75 @@
+{% extends 'public/base.html' %}
+
+{% block title %}Let's Play | Home{% endblock %}
+
+{% block header %}
+
+<header class="home-banner text-center text-white">	
+  <div class="home-banner-content">	
+    <div class="container">	
+      <h1 class="masthead-heading mb-0">Let's Play</h1>	
+      <h2 class="masthead-subheading mb-0">Be Creative and Have Fun!</h2>	
+      <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>	
+    </div>	
+  </div>	
+</header>	
+
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+            <div class="p-5">
+                <img class="img-fluid rounded-circle" src="https://res.cloudinary.com/andy-osborne/image/upload/v1593866055/Hackathon/INdex/brown-haired-female-anime-character-figure-164839_1_1_cxuz0f.png" alt="">
+            </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+            <div class="p-5">
+                <h2 class="display-4">Challenge your creativity and friends</h2>
+                <p>We have {{ n_of_users }} users who are bringing out their inner creativity and making cool things. Join them today
+                and see what awesome things you can make!
+                </p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+            <div class="p-5">
+                <img class="img-fluid rounded-circle" src="https://res.cloudinary.com/andy-osborne/image/upload/v1593866703/Hackathon/INdex/boy-child-clouds-kid-346796_1_1_zoh25m.png" alt="">
+            </div>
+            </div>
+            <div class="col-lg-6">
+            <div class="p-5">
+                <h2 class="display-4">Reach for the stars!</h2>
+                <p>Work your way through your daily activities and earn special badgers to show off to your friends and family!</p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+            <div class="p-5">
+                <img class="img-fluid rounded-circle" src="https://res.cloudinary.com/andy-osborne/image/upload/v1593867210/Hackathon/INdex/arts-and-crafts-child-close-up-color-159579_1_1_a6brnz.jpg" alt="">
+            </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+            <div class="p-5">
+                <h2 class="display-4">Upload your creativity!</h2>
+                <p>You can share your creations for all your friends to see!</p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

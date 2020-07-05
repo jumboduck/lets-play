@@ -1,12 +1,25 @@
-from flask import Flask, render_template, redirect, request, url_for, session
-from werkzeug.security import generate_password_hash, check_password_hash
-from bson.objectid import ObjectId
-from flask_pymongo import PyMongo
-from flask import Flask, redirect, render_template, request, session, url_for, flash
-from datetime import datetime
 import os
-<< << << < HEAD
+from flask import Flask, redirect, render_template, request, session, url_for, flash
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+# Password and datetime look optional (Pasha)
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
+
+if os.path.exists('env.py'):
+    import env
+
+
+app = Flask(__name__)
+
+app.config['MONGO_DBNAME'] = 'letsplay'
+app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
+app.secret_key = os.environ.get('SECRET')
+
+"""
+This piece of code is from some other place and at the moment it doesn't work.
+That is why I kept it but commented it out. (Pasha)
 
 app = Flask(__name__)
 app.secret_key = "randomstring123"
@@ -19,7 +32,7 @@ if app.config['DEBUG'] == True:
 else:
     app.config['MONGO_DBNAME'] = os.getenv('MONGO_DBNAME')
     app.config['MONGO_URI'] = os.getenv('MONGO_URI')
-
+"""
 mongo = PyMongo(app)
 
 
@@ -27,12 +40,15 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    return render_template('login.html', register=mongo.db.register.find_one())
+    return render_template('public/index.html')
+    # return render_template('/public/login.html', register=mongo.db.register.find_one())
 
 
-"""Register form action  method must be post.  Insert  new user in database using form on login page, then redirect user to allrecipeslist page.
 """
-
+Register form action method must be post.
+Insert  new user in database using form on login page,
+then redirect user to allrecipeslist page.
+"""
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -42,7 +58,7 @@ def register():
         # print(register)
         object_id = reg_id.inserted_id
         return redirect(url_for('', register_id=object_id))
-    return render_template('register.html')
+    return render_template('public/register.html')
 
 
 """
@@ -64,24 +80,12 @@ def login():
         else:  # if user does not exist
             flash("User does not exist")
             return redirect(url_for('register'))
-    return render_template('login.html')
+    return render_template('/public/login.html')
 
 
-== == == =
-
-
-if os.path.exists('env.py'):
-    import env
-
-
-app = Flask(__name__)
-
-app.config['MONGO_DBNAME'] = 'letsplay'
-app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
-app.secret_key = os.environ.get('SECRET')
-
-mongodb = PyMongo(app)
-
+"""
+This piece of code is just to test a connect to MongoDB.
+I commented it out but kept it for possible use in future. (Pasha)
 
 @app.route('/')
 def index():
@@ -94,11 +98,10 @@ def index():
     for key in the_user:
         print("key: ", key)
     return render_template('public/index.html', n_of_users=n_of_users)
-
+"""
 
 if __name__ == '__main__':
     app.run(
         host=os.environ.get('IP'),
         port=os.environ.get('PORT'),
         debug=True)
->>>>>> > upstream/master
