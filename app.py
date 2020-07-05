@@ -18,6 +18,9 @@ app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET')
 
 """
+This piece of code is from some other place and at the moment it doesn't work.
+That is why I kept it but commented it out. (Pasha)
+
 app = Flask(__name__)
 app.secret_key = "randomstring123"
 app.config['DEBUG'] = False
@@ -37,13 +40,15 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    return render_template('/public/index.html')
+    return render_template('public/index.html')
     # return render_template('/public/login.html', register=mongo.db.register.find_one())
 
 
-"""Register form action  method must be post.  Insert  new user in database using form on login page, then redirect user to allrecipeslist page.
 """
-
+Register form action method must be post.
+Insert  new user in database using form on login page,
+then redirect user to allrecipeslist page.
+"""
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -53,7 +58,7 @@ def register():
         # print(register)
         object_id = reg_id.inserted_id
         return redirect(url_for('', register_id=object_id))
-    return render_template('register.html')
+    return render_template('public/register.html')
 
 
 """
@@ -77,7 +82,11 @@ def login():
             return redirect(url_for('register'))
     return render_template('/public/login.html')
 
+
 """
+This piece of code is just to test a connect to MongoDB.
+I commented it out but kept it for possible use in future. (Pasha)
+
 @app.route('/')
 def index():
     db_content = mongodb.db.users.find()
