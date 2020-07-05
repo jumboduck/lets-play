@@ -5,3 +5,19 @@
 .navbar-custom {
     background-color: #929191;
 }
+
+.home-banner {
+    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1593956194/Hackathon/INdex/4k-wallpaper-adorable-blur-boy-1148998_1_1_1_1_khf2uw.jpg");
+    position: relative;
+    overflow: hidden;
+    padding-top: calc(7rem + 72px);
+    padding-bottom: 7rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+.home-banner-content {
+    background-color: rgba(146, 145, 145, 0.6);
+}
