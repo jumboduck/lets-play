@@ -41,7 +41,7 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    return render_template('public/index.html')
+    return render_template('public/index.html', session=session)
     # return render_template('
     # /public/login.html', register=mongo.db.register.find_one())
 
@@ -58,9 +58,9 @@ flash message to show that  password is incorrect
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        login_user = mongo.db.register.find_one(
-            {'username': request.form['username']})
         form = request.form
+        login_user = mongo.db.users.find_one(
+            {'username': request.form['username']})
         if login_user:
             if(form['password'] == login_user['password']):
                 session['username'] = login_user['username']
@@ -73,12 +73,12 @@ def login():
         else:  # if user does not exist
             flash("User does not exist")
             return redirect(url_for('register'))
-    return render_template('/public/login.html')
+    return render_template('/public/login.html', session=session)
 
 
 @app.route('/logout')
 def logout():
-    session.pop('user', None)
+    session.pop('username', None)
     session.pop('status', None)
     return redirect(url_for('index'))
 
@@ -95,30 +95,29 @@ def register():
     if request.method == 'POST':
         register = mongo.db.register
         reg_id = register.insert_one(request.form.to_dict())
-        # print(register)
         object_id = reg_id.inserted_id
         return redirect(url_for('', register_id=object_id))
-    return render_template('public/register.html')
+    return render_template('public/register.html', session=session)
 
 
 @app.route('/home')
 def home():
-    return render_template('public/home.html')
+    return render_template('public/home.html', session=session)
 
 
 @app.route('/activities_proposed')
 def activities_proposed():
-    return render_template('public/activities_proposed.html')
+    return render_template('public/activities_proposed.html', session=session)
 
 
 @app.route('/activities_done')
 def activities_done():
-    return render_template('public/activities_done.html')
+    return render_template('public/activities_done.html', session=session)
 
 
 @app.route('/games')
 def games():
-    return render_template('public/games.html')
+    return render_template('public/games.html', session=session)
 
 
 """
