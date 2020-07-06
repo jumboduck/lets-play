@@ -2,7 +2,7 @@ import os
 from flask import Flask, redirect, render_template, request, url_for
 from flask import session, flash
 from flask_pymongo import PyMongo
-# from bson.objectid import ObjectId
+from passlib.hash import pbkdf2_sha256
 # Password and datetime look optional (Pasha)
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from datetime import datetime
@@ -17,23 +17,6 @@ app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'letsplay'
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET')
-
-"""
-This piece of code is from some other place and at the moment it doesn't work.
-That is why I kept it but commented it out. (Pasha)
-
-app = Flask(__name__)
-app.secret_key = "randomstring123"
-app.config['DEBUG'] = False
-
-if app.config['DEBUG'] == True:
-    from config import dbconfig
-    app.config["MONGO_DBNAME"] = ''
-    app.config["MONGO_URI"] = dbconfig()
-else:
-    app.config['MONGO_DBNAME'] = os.getenv('MONGO_DBNAME')
-    app.config['MONGO_URI'] = os.getenv('MONGO_URI')
-"""
 
 mongo = PyMongo(app)
 
@@ -63,7 +46,7 @@ def login():
         login_user = mongo.db.users.find_one(
             {'username': request.form['username']})
         if login_user:
-            if(form['password'] == login_user['password']):
+            if pbkdf2_sha256.verify(form["password"], login_user['password']):
                 session['username'] = login_user['username']
                 session['status'] = login_user['status']
                 return redirect(url_for('home'))
@@ -97,7 +80,7 @@ def register():
         users = mongo.db.users
         if users.count_documents({'username': username}) == 0 and password == password_confirm:
             users.insert_one(
-                {'username': username, 'password': password, 'status': 'user'})
+                {'username': username, 'password': pbkdf2_sha256.hash(password), 'status': 'user'})
             session['username'] = username
             session['status'] = 'user'
             return redirect(url_for('home'))
