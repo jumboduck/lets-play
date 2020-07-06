@@ -101,19 +101,10 @@ def home():
     return render_template('public/home.html', session=session)
 
 
-@app.route('/activities_proposed')
+@app.route('/activities')
 def activities_proposed():
-    return render_template('public/activities_proposed.html', session=session)
-
-
-@app.route('/activities_done')
-def activities_done():
-    return render_template('public/activities_done.html', session=session)
-
-
-@app.route('/games')
-def games():
-    return render_template('public/games.html', session=session)
+    activities = mongo.db.activities
+    return render_template('public/activities.html', session=session, activities = activities)
 
 
 """

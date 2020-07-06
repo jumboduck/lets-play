@@ -1,0 +1,40 @@
+{% extends 'public/base.html' %}
+
+{% block title %}Acivities{% endblock %}
+
+{% block header %}
+
+<header class="home-banner text-center text-white">
+  <div class="banner-content">
+    <div class="container">
+      <h1 class="masthead-heading mb-0">ACTIVITIES</h1>
+    </div>
+  </div>
+</header>
+
+{% endblock %}
+
+{% block content %}
+<div class="activities">
+
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link activity-btn" type="button" data-toggle="collapse" data-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            Play hide and seek
+          </button>
+        </h2>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>If you make sure to make all the nooks and crannies in your home as child-safe as possible before playing,
+            this will provide fun for all the family.</p>
+          <button class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">I have done this!</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% endblock %}
