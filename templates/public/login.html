@@ -38,6 +38,20 @@
                                 <input class="form-control" type="password" name="password" id="password" required>
                             </div>
 
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="flashes">
+    
+                                    {% for message in messages %} 
+                                        <strong class="flash-color">
+                                            {{ message }}                                                                
+                                        </strong>
+                                    {% endfor %}
+    
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+
                         </fieldset>
                         <div class="form-group text-center">
                             <button class="btn btn-primary" type="submit">Login</button>
