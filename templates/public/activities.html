@@ -15,26 +15,36 @@
 {% endblock %}
 
 {% block content %}
-<div class="activities">
-
-  <div class="accordion" id="accordionExample">
+<div class="activities" id="activities">
+  {% for activity in activities %}
+  <div class="accordion" id="activity{{loop.index}}">
     <div class="card">
-      <div class="card-header" id="headingOne">
+      <div class="card-header" id="heading{{loop.index}}">
         <h2 class="mb-0">
-          <button class="btn btn-link activity-btn" type="button" data-toggle="collapse" data-target="#collapseOne"
-            aria-expanded="true" aria-controls="collapseOne">
-            Play hide and seek
+          <button class="btn btn-link activity-btn" type="button" data-toggle="collapse"
+            data-target="#collapse{{loop.index}}" {% if loop.index == 1 %}aria-expanded="true" {% endif%}
+            aria-controls="collapse{{loop.index}}">
+            {{ activity.name }}
           </button>
         </h2>
       </div>
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div id="collapse{{loop.index}}" class="collapse{% if loop.index == 1 %} show{% endif %}"
+        aria-labelledby="heading{{loop.index}}" data-parent="#activities">
         <div class="card-body">
-          <p>If you make sure to make all the nooks and crannies in your home as child-safe as possible before playing,
-            this will provide fun for all the family.</p>
-          <button class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">I have done this!</button>
+          {% if activity.requirements %}
+          <p><strong>You'll need:</strong> {{ activity.requirements }}</p>
+          {% endif %}
+          <p>{{ activity.description }}</p>
+          {% if activity.has_photo %}
+          <button class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">Send a photo of my
+            project!</button>
+          {% else %}
+          <button class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">I have finished
+            this!</button>
+          {% endif %}
         </div>
       </div>
     </div>
-
-  </div>
-  {% endblock %}
+  </div>{% endfor %}
+</div>
+{% endblock %}

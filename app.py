@@ -102,8 +102,8 @@ def home():
 
 
 @app.route('/activities')
-def activities_proposed():
-    activities = mongo.db.activities
+def activities():
+    activities = mongo.db.activities.find()
     return render_template('public/activities.html', session=session, activities = activities)
 
 
