@@ -91,10 +91,11 @@ def register():
         # Get user's data from form.
         username = form['username']
         password = form['password']
+        password_confirm = form['confirm-password']
 
         # If username is valid then redirect to sign in.
         users = mongo.db.users
-        if users.count_documents({'username': username}) == 0:
+        if users.count_documents({'username': username}) == 0 and password == password_confirm:
             users.insert_one(
                 {'username': username, 'password': password, 'status': 'user'})
             session['username'] = username
