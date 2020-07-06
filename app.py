@@ -80,7 +80,7 @@ def register():
         users = mongo.db.users
         if users.count_documents({'username': username}) == 0 and password == password_confirm:
             users.insert_one(
-                {'username': username, 'password': pbkdf2_sha256.hash(password), 'status': 'user'})
+                {'username': username, 'password': pbkdf2_sha256.hash(password), 'status': 'user', 'accomplished': []})
             session['username'] = username
             session['status'] = 'user'
             return redirect(url_for('home'))
