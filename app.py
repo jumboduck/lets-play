@@ -26,8 +26,6 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     return render_template('public/index.html', session=session)
-    # return render_template('
-    # /public/login.html', register=mongo.db.register.find_one())
 
 
 """
@@ -104,25 +102,29 @@ def home():
 @app.route('/activities')
 def activities():
     activities = mongo.db.activities.find()
-    return render_template('public/activities.html', session=session, activities = activities)
+    return render_template('public/activities.html', session=session, activities=activities)
 
+# Admin 
 
-"""
-This piece of code is just to test a connect to MongoDB.
-I commented it out but kept it for possible use in future. (Pasha)
+@app.route('/activity_manager', methods=["POST", "GET"])
+def manage_activities():
 
-@app.route('/')
-def index():
-    db_content = mongodb.db.users.find()
-    print("db_content: ", db_content)
-    n_of_users = mongodb.db.users.count_documents({})
-    print("N of users: ", n_of_users)
-    the_user = mongodb.db.users.find_one({"name": "Test User"})
-    print("the_user: ", the_user)
-    for key in the_user:
-        print("key: ", key)
-    return render_template('public/index.html', n_of_users=n_of_users)
-"""
+    if request.method == "POST":
+        req = request.form
+        new_task = {
+            "name" : req["activity_name"],
+            "description" : req["activity_description"],
+            "has_photo" : req.getlist("activity_photo")
+        }
+                
+        if req["activity_requirements"] != "":
+            new_task["requirements"] = req["activity_requirements"]
+        
+        
+        mongo.db.activities.insert_one(new_task)
+        return redirect(request.referrer)
+
+    return render_template('admin/activity_manager.html', session=session)
 
 
 if __name__ == '__main__':
