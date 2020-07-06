@@ -34,6 +34,7 @@ else:
     app.config['MONGO_DBNAME'] = os.getenv('MONGO_DBNAME')
     app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 """
+
 mongo = PyMongo(app)
 
 
@@ -83,20 +84,31 @@ def logout():
     return redirect(url_for('index'))
 
 
-"""
-Register form action method must be post.
-Insert  new user in database using form on login page,
-then redirect user to allrecipeslist page.
-"""
-
-
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        register = mongo.db.register
-        reg_id = register.insert_one(request.form.to_dict())
-        object_id = reg_id.inserted_id
-        return redirect(url_for('', register_id=object_id))
+        form = request.form
+        # Get user's data from form.
+        username = form['username']
+        password = form['password']
+
+        # If username is valid then redirect to sign in.
+        users = mongo.db.users
+        if users.count_documents({'username': username}) == 0:
+            users.insert_one(
+                {'username': username, 'password': password, 'status': 'user'})
+            session['username'] = username
+            session['status'] = 'user'
+            return redirect(url_for('home'))
+        else:
+            flash("Not valid username or password. Try again, please.")
+
+            """ This piece of code is from the old version.
+            I kept it just in case we want to use it. /Pasha
+            # reg_id = users.insert_one(request.form.to_dict())
+            # object_id = reg_id.inserted_id
+            # return redirect(url_for('', register_id=object_id))
+            """
     return render_template('public/register.html', session=session)
 
 
