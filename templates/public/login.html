@@ -1,83 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% extends 'public/base.html' %}
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+{% block title %}Let's Play | Login{% endblock %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />  
-    <link rel="icon" type="image/png" href="/static/images/fireball-favicon.png" />
-    <title>Caribbean Recipes</title>
-</head>
+{% block header %}
 
-<!-- displays login page and invites user to login background image set to caribbean recipe images -->
-<body class="bg-image">
-    <div class="col s12 m4">
-        <h2 class="center">Log In</h2>
-    </div>
+<header class="login-banner text-center text-white banner-settings">	
+  <div class="home-banner-content">	
+    <div class="container">	
+      <h1 class="masthead-heading mb-0">Let's Play</h1>	
+      <h2 class="masthead-subheading mb-0">Be Creative and Have Fun!</h2>	
+      <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>	
+    </div>	
+  </div>	
+</header>	
 
-    <div class="container col s4 offset-s8"><span class="flow-text"></span>
-        <form action="{{ url_for('login') }}" method="POST" class="col s12 m6 center-align">
+{% endblock %}
 
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="username" name="username" type="text" class="validate font-color" placeholder="username" required>
+{% block content %}
 
-                <!-- messages are not defined at this point!!!
-                {% for message in messages %} 
-                    <h5 class="font3">
-                        {{ message }}                                                                
-                    </h5>
-                {% endfor %}
-                -->
+<div class="row no-gutters login-image b-image d-flex justify-content-center">
+    <div class="col-12 col-lg-3 text-center">
+        <div class="container-fluid center-form">
+            <div class="header">
+                <h1>Login</h1>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center text-sm-center text-lg-left">
+                    <form action="/login" method="POST">
+                        <fieldset class="form-group">
+                            <div class="form-group">
+                                <label class="form-control-label" for="username">Username</label>
+                                <input class="form-control" type="text" name="username" id="username" required>
+                            </div>
 
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">vpn_key</i>
-                <input id="password" name="password" type="password" class="validate font-color" placeholder="Password" required>
+                            <div class="form-group">
+                                <label class="form-control-label" for="password">Password</label>
+                                <input class="form-control" type="password" name="password" id="password" required>
+                            </div>
 
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <div class="flashes">
-
-                            {% for message in messages %} 
-                                <strong class="flash-color">
-                                    {{ message }}                                                                
-                                </strong>
-                            {% endfor %}
-
+                        </fieldset>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" type="submit">Login</button>
                         </div>
-                    {% endif %}
-                {% endwith %}
+                        <div class="text-center">
+                            <p>Don't have an account? <a href="{{url_for('register')}}">Sign Up Here</a></p>
+                        </div>    
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- button to submit form -->  
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn black btn-bg waves-effect waves-light" type="submit" name="action">
-                    Login
-                    <i class="material-icons right">exit_to_app</i>
-                </button>
-            </div>
-        </div>
-  
-        <!-- user can register by using register link-->
 
-        <a style="text-decoration: none; color: black;" class="font-color link-text" href="{{ url_for('register') }}">
-            Don't have an account? Register here
-        </a>
-    </form>
-
- 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-</html>
+{% endblock %}
