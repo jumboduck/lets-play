@@ -1,3 +1,25 @@
+/* General Styling */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+/* Navbar */
+
 .navbar-brand img {
     width: 70px;
 }
@@ -5,6 +27,8 @@
 .navbar-custom {
     background-color: #929191;
 }
+
+/* Banner Styling and Images */
 
 .banner-settings {
     position: relative;
@@ -30,6 +54,7 @@
 }
 
 /* Styling for list of activities */
+
 .activities {
     width: 90%;
     margin: 1rem auto;
