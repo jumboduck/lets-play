@@ -45,8 +45,14 @@ body {
     background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1593956194/Hackathon/INdex/4k-wallpaper-adorable-blur-boy-1148998_1_1_1_1_khf2uw.jpg");
 }
 
-.home-banner-content {
+.banner-content {
     background-color: rgba(146, 145, 145, 0.6);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: -100%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 .login-banner {
