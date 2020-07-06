@@ -59,6 +59,10 @@ body {
     background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594023556/Hackathon/INdex/photo-of-kids-jumping-together-3311695_1_1_jftkr0.jpg");
 }
 
+.register-banner {
+    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594038361/Hackathon/INdex/mosaic-alien-on-wall-1670977_2_1_boqivg.jpg");
+}
+
 /* Styling for list of activities */
 
 .activities {
