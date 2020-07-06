@@ -28,3 +28,32 @@
 .login-banner {
     background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594023556/Hackathon/INdex/photo-of-kids-jumping-together-3311695_1_1_jftkr0.jpg");
 }
+
+/* Styling for list of activities */
+.activities {
+    width: 90%;
+    margin: 1rem auto;
+}
+
+.activity-btn {
+    font-size: 2rem;
+    color: #41b3a3;
+}
+
+.activity-btn:hover {
+    color: #c38d9e;
+}
+
+.card-header {
+    background-color: #ffefff;
+}
+
+.btn-activity-done {
+    text-transform: uppercase;
+    border: none;
+    padding: 0.5rem;
+}
+
+.btn-activity-done:hover {
+    background-color: #c38d9e;
+}
