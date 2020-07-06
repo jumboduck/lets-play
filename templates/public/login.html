@@ -5,7 +5,7 @@
 {% block header %}
 
 <header class="login-banner text-center text-white banner-settings">	
-  <div class="home-banner-content">	
+  <div class="banner-content">	
     <div class="container">	
       <h1 class="masthead-heading mb-0">Let's Play</h1>	
       <h2 class="masthead-subheading mb-0">Be Creative and Have Fun!</h2>	
@@ -37,6 +37,20 @@
                                 <label class="form-control-label" for="password">Password</label>
                                 <input class="form-control" type="password" name="password" id="password" required>
                             </div>
+
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="flashes">
+    
+                                    {% for message in messages %} 
+                                        <strong class="flash-color">
+                                            {{ message }}                                                                
+                                        </strong>
+                                    {% endfor %}
+    
+                                </div>
+                            {% endif %}
+                        {% endwith %}
 
                         </fieldset>
                         <div class="form-group text-center">

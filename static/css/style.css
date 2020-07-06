@@ -1,3 +1,25 @@
+/* General Styling */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+/* Navbar */
+
 .navbar-brand img {
     width: 70px;
 }
@@ -5,6 +27,8 @@
 .navbar-custom {
     background-color: #929191;
 }
+
+/* Banner Styling and Images */
 
 .banner-settings {
     position: relative;
@@ -21,15 +45,26 @@
     background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1593956194/Hackathon/INdex/4k-wallpaper-adorable-blur-boy-1148998_1_1_1_1_khf2uw.jpg");
 }
 
-.home-banner-content {
+.banner-content {
     background-color: rgba(146, 145, 145, 0.6);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: -100%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 .login-banner {
     background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594023556/Hackathon/INdex/photo-of-kids-jumping-together-3311695_1_1_jftkr0.jpg");
 }
 
+.register-banner {
+    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594038361/Hackathon/INdex/mosaic-alien-on-wall-1670977_2_1_boqivg.jpg");
+}
+
 /* Styling for list of activities */
+
 .activities {
     width: 90%;
     margin: 1rem auto;
