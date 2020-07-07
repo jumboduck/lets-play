@@ -125,7 +125,9 @@ def reject(image_id):
 def home():
     return render_template('public/home.html', session=session)
 
-
+"""
+Display only activities that have not been accomplished by the user yet.
+"""
 @app.route('/activities')
 def activities():
     activities = mongo.db.activities.find()
@@ -137,21 +139,31 @@ def activities():
     return render_template('public/activities.html', session=session, activities=available_activities)
 
 
+"""
+When an activity is marked as completed, the 'accomplished' array in the user document of the
+database is updated to include the id of the accomplished task.
+If the form contains a field image, and it is not empty, the image is uploaded to cloudinary
+and its information inserted in the "images" collection.
+"""
+
 @app.route('/complete/<activity_id>', methods = ["POST", "GET"])
 def complete(activity_id):
     users = mongo.db.users
     images = mongo.db.images
-    if 'image' in request.files:
-        if request.files['image']:
-            image = request.files['image']
-            uploaded_image = cloudinary.uploader.upload(image, width = 800, quality = 'auto')
-            image_url = uploaded_image.get('secure_url')
-            images.insert({
-                'image_url': image_url,
-                'user': session['username'],
-                'reactions': {},
-                'timestamp': datetime.now()
-            })
+    # Check if image input exists, and if a file has been selected
+    if 'image' in request.files and request.files['image']:
+        # Retrieve the image and send it to cloudinary
+        image = request.files['image']
+        uploaded_image = cloudinary.uploader.upload(image, width = 800, quality = 'auto')
+        image_url = uploaded_image.get('secure_url')
+        # Update "images" collection with new image
+        images.insert({
+            'image_url': image_url,
+            'user': session['username'],
+            'reactions': {},
+            'timestamp': datetime.now()
+        })
+    # Update user document with accomplished activity
     users.update_one(
         {'username': session['username']},
         {'$push': {
@@ -163,6 +175,10 @@ def complete(activity_id):
     return redirect(url_for('activities'))
 
 
+
+"""
+Reset activities for logged in user
+"""
 @app.route('/reset_activities')
 def reset_activities():
     users = mongo.db.users
@@ -173,6 +189,7 @@ def reset_activities():
             "accomplished": []
         }
     })
+    flash("Well done, let's start again!")
     return redirect(url_for('activities'))
 
 
