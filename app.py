@@ -4,6 +4,7 @@ from flask import session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from passlib.hash import pbkdf2_sha256
+from bson.objectid import ObjectId
 # Password and datetime look optional (Pasha)
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from datetime import datetime
@@ -125,7 +126,25 @@ def home():
 @app.route('/activities')
 def activities():
     activities = mongo.db.activities.find()
-    return render_template('public/activities.html', session=session, activities=activities)
+    user = mongo.db.users.find_one({'username': session['username']})
+    available_activities = []
+    for activity in activities:
+        if not activity["_id"] in user["accomplished"]:
+            available_activities.append(activity)
+    return render_template('public/activities.html', session=session, activities=available_activities)
+
+
+@app.route('/complete/<activity_id>')
+def complete(activity_id):
+    users = mongo.db.users
+    users.update(
+        {'username': session['username']},
+        {'$push': {
+            'accomplished': ObjectId(activity_id)
+            }
+        }
+    )
+    return redirect(url_for('activities'))
 
 # Admin 
 
