@@ -160,7 +160,8 @@ def complete(activity_id):
             'image_url': image_url,
             'user': session['username'],
             'reactions': {'thumbsup': 0, 'heart': 0, 'laugh': 0, 'happy': 0},
-            'timestamp': datetime.now()
+            'timestamp': datetime.now(),
+            'approved': False
         })
     # Update user document with accomplished activity
     users.update_one(
