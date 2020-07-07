@@ -142,8 +142,7 @@ def complete(activity_id):
     users = mongo.db.users
     images = mongo.db.images
     if 'image' in request.files:
-        if request.files['image'] is not None:
-            print ("there is an image input in this form!")
+        if request.files['image']:
             image = request.files['image']
             uploaded_image = cloudinary.uploader.upload(image, width = 800, quality = 'auto')
             image_url = uploaded_image.get('secure_url')
@@ -162,6 +161,20 @@ def complete(activity_id):
     )
     flash('Congratulations on completing this activity!')
     return redirect(url_for('activities'))
+
+
+@app.route('/reset_activities')
+def reset_activities():
+    users = mongo.db.users
+    users.update({
+        'username': session['username']
+    },{
+        '$set':{
+            "accomplished": []
+        }
+    })
+    return redirect(url_for('activities'))
+
 
 # Admin 
 
