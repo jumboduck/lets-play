@@ -84,6 +84,10 @@ body {
     background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594038361/Hackathon/INdex/mosaic-alien-on-wall-1670977_2_1_boqivg.jpg");
 }
 
+.noentry-banner {
+    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594155386/Hackathon/photo-of-lego-toy-miniatures-3806754_1_1_qvuada.jpg");
+}
+
 /* Styling for list of activities */
 
 .activities {

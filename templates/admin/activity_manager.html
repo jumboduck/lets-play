@@ -4,6 +4,20 @@
 
 {% block content %}
 
+{% if session['status'] != "admin" %}
+
+<header class="noentry-banner banner-settings text-center text-white">	
+  <div class="banner-content">	
+    <div class="container">	
+      <h1 class="mb-0">Whoops</h1>	
+      <h2 class="mb-0">Somethings gone wrong!</h2>	
+      <a href="{{url_for('index')}}" class="btn btn-primary btn-xl rounded-pill mt-3">Click me to go home</a>	
+    </div>	
+  </div>	
+</header>	
+
+{% else %}
+
 <div class="row no-gutters text-center">
     <div class="col-12 p-3">
         <h1>Add Activity</h1>
@@ -47,5 +61,6 @@
     </div>
 </div>
 
+{% endif %}
 
 {% endblock %}
