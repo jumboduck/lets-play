@@ -165,7 +165,7 @@ def complete(activity_id):
 
 @app.route('/reset_activities')
 def reset_activities():
-    users = mongo.db.users.find()
+    users = mongo.db.users
     users.update({
         'username': session['username']
     },{
@@ -173,6 +173,9 @@ def reset_activities():
             "accomplished": []
         }
     })
+    return redirect(url_for('activities'))
+
+
 # Admin 
 
 @app.route('/activity_manager', methods=["POST", "GET"])

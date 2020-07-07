@@ -1,6 +1,6 @@
 {% extends 'public/base.html' %}
 
-{% block title %}Acivities{% endblock %}
+{% block title %}Activities{% endblock %}
 
 {% block header %}
 
@@ -16,6 +16,9 @@
 
 {% block content %}
 <div class="activities" id="activities">
+
+  {% if activities %}
+
   {% for activity in activities %}
   <div class="accordion" id="activity{{loop.index}}">
     <div class="card">
@@ -50,5 +53,14 @@
       </div>
     </div>
   </div>{% endfor %}
+
+  {% else %}
+
+  <p>Congratulations on completing all the activities!</p>
+  <p><a href="{{ url_for('reset_activities') }}">Click here if you would like to start over.</a></p>
+
+  {% endif %}
+
+
 </div>
 {% endblock %}
