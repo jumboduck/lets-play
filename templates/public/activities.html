@@ -35,14 +35,17 @@
           <p><strong>You'll need:</strong> {{ activity.requirements }}</p>
           {% endif %}
           <p>{{ activity.description }}</p>
-          {% if activity.has_photo %}
-          <button class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">Send a photo of my
-            project!</button>
-          {% else %}
-          <a href="{{ url_for('complete', activity_id = activity._id) }}"
-            class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">I have finished
-            this!</a>
-          {% endif %}
+
+
+          <form id="form{{loop.index}}" enctype="multipart/form-data"
+            action="{{url_for('complete', activity_id = activity._id)}}" method="POST">
+            {% if activity.has_photo %}
+            <p> For this task, you have the ability to save a picture to show it to your friends.</p>
+            <input type="file" name="image" capture accept="image/*">
+            {% endif %}
+            <input type="submit" class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3"
+              value="I have finished this!"></form>
+
         </div>
       </div>
     </div>
