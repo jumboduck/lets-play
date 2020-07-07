@@ -237,6 +237,12 @@ def manage_activities():
 
     return render_template('admin/activity_manager.html', session=session)
 
+# Below handles any 404 errors when a user searches for a non-existant page. / Andy
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("public/404.html"), 404
+
 
 if __name__ == '__main__':
     app.run(
