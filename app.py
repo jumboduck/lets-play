@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from datetime import datetime
 # Password and datetime look optional (Pasha)
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from datetime import datetime
@@ -128,7 +129,8 @@ def complete(activity_id):
             images.insert({
                 'image_url': image_url,
                 'user': session['username'],
-                'reactions': {}
+                'reactions': {},
+                'timestamp': datetime.now()
             })
     users.update_one(
         {'username': session['username']},
@@ -137,6 +139,7 @@ def complete(activity_id):
             }
         }
     )
+    flash('Congratulations on completing this activity!')
     return redirect(url_for('activities'))
 
 # Admin 
