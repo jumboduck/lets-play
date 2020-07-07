@@ -119,16 +119,17 @@ def activities():
 def complete(activity_id):
     users = mongo.db.users
     images = mongo.db.images
-    if request.files['image'] is not None:
-        print ("there is an image input in this form!")
-        image = request.files['image']
-        uploaded_image = cloudinary.uploader.upload(image, width = 800, quality = 'auto')
-        image_url = uploaded_image.get('secure_url')
-        images.insert({
-            'image_url': image_url,
-            'user': session['username'],
-            'reactions': {}
-        })
+    if 'image' in request.files:
+        if request.files['image'] is not None:
+            print ("there is an image input in this form!")
+            image = request.files['image']
+            uploaded_image = cloudinary.uploader.upload(image, width = 800, quality = 'auto')
+            image_url = uploaded_image.get('secure_url')
+            images.insert({
+                'image_url': image_url,
+                'user': session['username'],
+                'reactions': {}
+            })
     users.update_one(
         {'username': session['username']},
         {'$push': {
