@@ -8,9 +8,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from datetime import datetime
-# Password and datetime look optional (Pasha)
-# from werkzeug.security import generate_password_hash, check_password_hash
-# from datetime import datetime
 
 
 if os.path.exists('env.py'):
@@ -92,13 +89,8 @@ def register():
         else:
             flash("Not valid username or password. Try again, please.")
 
-            """ This piece of code is from the old version.
-            I kept it just in case we want to use it. /Pasha
-            # reg_id = users.insert_one(request.form.to_dict())
-            # object_id = reg_id.inserted_id
-            # return redirect(url_for('', register_id=object_id))
-            """
     return render_template('public/register.html', session=session)
+
 
 @app.route('/home')
 def home():
@@ -107,6 +99,7 @@ def home():
 """
 Display only activities that have not been accomplished by the user yet.
 """
+
 @app.route('/activities')
 def activities():
     activities = mongo.db.activities.find()
@@ -155,10 +148,10 @@ def complete(activity_id):
     return redirect(url_for('activities'))
 
 
-
 """
 Reset activities for logged in user
 """
+
 @app.route('/reset_activities')
 def reset_activities():
     users = mongo.db.users
@@ -171,7 +164,6 @@ def reset_activities():
     })
     flash("Well done, let's start again!")
     return redirect(url_for('activities'))
-
 
 
 @app.route('/images', methods=["GET", "POST"])
@@ -188,14 +180,16 @@ def update_reaction(image_id, reaction):
         {'$inc':{"reactions." + reaction : 1}})
     return redirect(url_for('images'))
 
+
 # Admin Views
 
 
 @app.route('/moderator')
 def moderator():
     images = mongo.db.images.find({'approved': False})
+    count_images = mongo.db.images.count_documents({'approved': False})
     return render_template(
-        'admin/moderator.html', session=session, images=images)
+        'admin/moderator.html', session=session, images=images, count=count_images)
 
 
 @app.route('/approve/<image_id>')
@@ -208,6 +202,7 @@ def approve(image_id):
 def reject(image_id):
     mongo.db.images.delete_one({'_id': ObjectId(image_id)})
     return redirect(url_for('moderator'))
+
 
 @app.route('/activity_manager', methods=["POST", "GET"])
 def manage_activities():
