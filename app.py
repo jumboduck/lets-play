@@ -100,26 +100,6 @@ def register():
             """
     return render_template('public/register.html', session=session)
 
-
-@app.route('/moderator')
-def moderator():
-    images = mongo.db.images.find({'approved': False})
-    return render_template(
-        'public/moderator.html', session=session, images=images)
-
-
-@app.route('/approve/<image_id>')
-def approve(image_id):
-    mongo.db.images.update_one({'_id': ObjectId(image_id)}, {'$set': {'approved': True}})
-    return redirect(url_for('moderator'))
-
-
-@app.route('/reject/<image_id>')
-def reject(image_id):
-    mongo.db.images.delete_one({'_id': ObjectId(image_id)})
-    return redirect(url_for('moderator'))
-
-
 @app.route('/home')
 def home():
     return render_template('public/home.html', session=session)
@@ -208,7 +188,26 @@ def update_reaction(image_id, reaction):
         {'$inc':{"reactions." + reaction : 1}})
     return redirect(url_for('images'))
 
-# Admin 
+# Admin Views
+
+
+@app.route('/moderator')
+def moderator():
+    images = mongo.db.images.find({'approved': False})
+    return render_template(
+        'admin/moderator.html', session=session, images=images)
+
+
+@app.route('/approve/<image_id>')
+def approve(image_id):
+    mongo.db.images.update_one({'_id': ObjectId(image_id)}, {'$set': {'approved': True}})
+    return redirect(url_for('moderator'))
+
+
+@app.route('/reject/<image_id>')
+def reject(image_id):
+    mongo.db.images.delete_one({'_id': ObjectId(image_id)})
+    return redirect(url_for('moderator'))
 
 @app.route('/activity_manager', methods=["POST", "GET"])
 def manage_activities():
