@@ -1,0 +1,44 @@
+{% extends 'public/base.html' %}
+
+{% block title %}Activities{% endblock %}
+
+{% block header %}
+
+<header class="home-banner text-center text-white">
+    <div class="banner-content">
+        <div class="container">
+            <h1 class="masthead-heading mb-0">ACTIVITIES</h1>
+        </div>
+    </div>
+</header>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row no-gutters">
+        {% for image in images %}
+        <div class="col-md-4 p-3">
+            <img src="{{ image.image_url }}" class="w-100">
+            <p>Image by {{ image.user }}</p>
+            <div class="image-reactions">
+                <p class="update-reaction"><a
+                        href="{{url_for('update_reaction', image_id = image._id, reaction = "thumbsup")}}">👍</a>:
+                    {{image.reactions.thumbsup}}</p>
+                <p class="update-reaction"><a
+                        href="{{url_for('update_reaction', image_id = image._id, reaction = "heart")}}">😍</a>:
+                    {{image.reactions.heart}}</p>
+                <p class="update-reaction"><a
+                        href="{{url_for('update_reaction', image_id = image._id, reaction = "laugh")}}">😂</a>:
+                    {{image.reactions.laugh}}</p>
+                <p class="update-reaction"><a
+                        href="{{url_for('update_reaction', image_id = image._id, reaction = "happy")}}">😀</a>:
+                    {{image.reactions.happy}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

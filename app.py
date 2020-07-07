@@ -4,7 +4,6 @@ from flask import session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from passlib.hash import pbkdf2_sha256
-from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -160,8 +159,9 @@ def complete(activity_id):
         images.insert({
             'image_url': image_url,
             'user': session['username'],
-            'reactions': {},
-            'timestamp': datetime.now()
+            'reactions': {'thumbsup': 0, 'heart': 0, 'laugh': 0, 'happy': 0},
+            'timestamp': datetime.now(),
+            'approved': False
         })
     # Update user document with accomplished activity
     users.update_one(
@@ -192,6 +192,21 @@ def reset_activities():
     flash("Well done, let's start again!")
     return redirect(url_for('activities'))
 
+
+
+@app.route('/images', methods=["GET", "POST"])
+def images():
+    images = mongo.db.images.find({'approved': True}).sort([("_id", -1)])
+    return render_template('public/images.html', images = images)
+
+
+@app.route('/update_reaction/<image_id>/<reaction>')
+def update_reaction(image_id, reaction):
+    images = mongo.db.images
+    images.update_one(
+        {'_id': ObjectId(image_id)},
+        {'$inc':{"reactions." + reaction : 1}})
+    return redirect(url_for('images'))
 
 # Admin 
 
