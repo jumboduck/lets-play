@@ -38,9 +38,10 @@ def index():
 """
 Login page action. Method must be post.
 Find the given password and username and  if it matches then
-redirect to allrecipeslist but ifnot redirect to register and
-if password only incorrect then
-flash message to show that  password is incorrect
+it logs the user in according to their account status of user or admin.
+Flash messages will show incorrect username/password combination to add an
+increased level of security to the user and not give clues to a potential hacker
+of what was incorrect. / Andy
 """
 
 
@@ -58,13 +59,10 @@ def login():
                     return redirect(url_for('moderator'))
                 else:
                     return redirect(url_for('home'))
-                # return redirect(url_for(
-                # '', register_id=login_user["_id"]))
             else:  # and if password is not correct
-                flash("Incorrect password")
+                flash("Incorrect username/password combination")
         else:  # if user does not exist
-            flash("User does not exist")
-            return redirect(url_for('register'))
+            flash("Incorrect username/password combination")
     return render_template('/public/login.html', session=session)
 
 
@@ -169,6 +167,13 @@ def complete(activity_id):
 
 @app.route('/activity_manager', methods=["POST", "GET"])
 def manage_activities():
+
+    """
+    The below is used within the Moderator Site to upload new activities 
+    for the users so that they appear in the activities page.
+    As the requirements field in the form is not required, it checks if it is blank
+    and if it is, then it will not upload it to the DB. /Andy
+    """
 
     if request.method == "POST":
         req = request.form
