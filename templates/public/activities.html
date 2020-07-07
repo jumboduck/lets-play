@@ -39,8 +39,9 @@
           <button class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">Send a photo of my
             project!</button>
           {% else %}
-          <button class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">I have finished
-            this!</button>
+          <a href="{{ url_for('complete', activity_id = activity._id) }}"
+            class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3">I have finished
+            this!</a>
           {% endif %}
         </div>
       </div>

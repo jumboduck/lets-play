@@ -2,7 +2,9 @@ import os
 from flask import Flask, redirect, render_template, request, url_for
 from flask import session, flash
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 from passlib.hash import pbkdf2_sha256
+from bson.objectid import ObjectId
 # Password and datetime look optional (Pasha)
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from datetime import datetime
@@ -47,7 +49,10 @@ def login():
             if pbkdf2_sha256.verify(form["password"], login_user['password']):
                 session['username'] = login_user['username']
                 session['status'] = login_user['status']
-                return redirect(url_for('home'))
+                if session['status'] == 'admin':
+                    return redirect(url_for('moderator'))
+                else:
+                    return redirect(url_for('home'))
                 # return redirect(url_for(
                 # '', register_id=login_user["_id"]))
             else:  # and if password is not correct
@@ -94,6 +99,25 @@ def register():
     return render_template('public/register.html', session=session)
 
 
+@app.route('/moderator')
+def moderator():
+    images = mongo.db.images.find({'approved': False})
+    return render_template(
+        'public/moderator.html', session=session, images=images)
+
+
+@app.route('/approve/<image_id>')
+def approve(image_id):
+    mongo.db.images.update_one({'_id': ObjectId(image_id)}, {'$set': {'approved': True}})
+    return redirect(url_for('moderator'))
+
+
+@app.route('/reject/<image_id>')
+def reject(image_id):
+    mongo.db.images.delete_one({'_id': ObjectId(image_id)})
+    return redirect(url_for('moderator'))
+
+
 @app.route('/home')
 def home():
     return render_template('public/home.html', session=session)
@@ -102,7 +126,25 @@ def home():
 @app.route('/activities')
 def activities():
     activities = mongo.db.activities.find()
-    return render_template('public/activities.html', session=session, activities=activities)
+    user = mongo.db.users.find_one({'username': session['username']})
+    available_activities = []
+    for activity in activities:
+        if not activity["_id"] in user["accomplished"]:
+            available_activities.append(activity)
+    return render_template('public/activities.html', session=session, activities=available_activities)
+
+
+@app.route('/complete/<activity_id>')
+def complete(activity_id):
+    users = mongo.db.users
+    users.update(
+        {'username': session['username']},
+        {'$push': {
+            'accomplished': ObjectId(activity_id)
+            }
+        }
+    )
+    return redirect(url_for('activities'))
 
 # Admin 
 
