@@ -28,6 +28,27 @@ body {
     background-color: #929191;
 }
 
+/* Font Styling */
+
+.menu-link {
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    color: rgba(255,255,255,.5);
+    display: block;
+    padding: .5rem 1rem
+}
+
+.menu-link:hover {
+    color: rgb(72, 5, 57);
+    text-decoration: none;
+}
+
+.menu-link-zoom {
+    transform: scale(1.2);
+}
+
 /* Banner Styling and Images */
 
 .banner-settings {
@@ -91,4 +112,12 @@ body {
 
 .btn-activity-done:hover {
     background-color: #c38d9e;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 410px) and (orientation: portrait) {
+    .banner-content {
+        right: 0;
+    }
 }

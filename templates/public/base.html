@@ -43,39 +43,39 @@
                 {% if not session['username'] %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('register') }}">Sign Up</a>
+                        <a class="menu-link" href="{{ url_for('register') }}">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
+                        <a class="menu-link" href="{{ url_for('login') }}">Log In</a>
                     </li>
                 </ul>
                 {% else %}
                 {% if session['status'] == 'user' %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                        <a class="menu-link" href="{{ url_for('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('activities') }}">Activities for you</a>
+                        <a class="menu-link" href="{{ url_for('activities') }}">Activities for you</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+                        <a class="menu-link" href="{{ url_for('logout') }}">Log Out</a>
                     </li>
                 </ul>
                 {% endif %}
                 {% if session['status'] == 'admin' %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                        <a class="menu-link" href="{{ url_for('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('manage_activities') }}">Activities Manager</a>
+                        <a class="menu-link" href="{{ url_for('manage_activities') }}">Activities Manager</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('moderator') }}">Moderator Page</a>
+                        <a class="menu-link" href="{{ url_for('moderator') }}">Moderator Page</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+                        <a class="menu-link" href="{{ url_for('logout') }}">Log Out</a>
                     </li>
                 </ul>
                 {% endif %}
@@ -110,6 +110,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
+    <script src="{{ url_for('static', filename='js/main.js')}}" type="text/javascript"></script>
 
 </body>
 
