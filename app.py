@@ -195,7 +195,7 @@ def reset_activities():
 
 @app.route('/images', methods=["GET", "POST"])
 def images():
-    images = mongo.db.images.find()
+    images = mongo.db.images.find({'approved': True}).sort([("_id", -1)])
     return render_template('public/images.html', images = images)
 
 
