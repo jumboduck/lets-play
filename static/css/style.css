@@ -25,7 +25,7 @@ body {
 }
 
 .navbar-custom {
-    background-color: #929191;
+    background-color: rgb(109, 103, 103);
 }
 
 /* Font Styling */
@@ -35,18 +35,18 @@ body {
     font-size: .8rem;
     font-weight: 700;
     letter-spacing: .1rem;
-    color: rgba(255,255,255,.5);
-    display: block;
-    padding: .5rem 1rem
+    color: rgba(255, 255, 255, 1);
+    padding: .5rem 1rem;
+    margin: .5rem;
 }
 
 .menu-link:hover {
-    color: rgb(72, 5, 57);
+    color: rgb(136, 241, 241);
     text-decoration: none;
 }
 
-.menu-link-zoom {
-    transform: scale(1.2);
+.nav-item {
+    margin: 0 0.8rem;
 }
 
 /* Banner Styling and Images */
@@ -84,6 +84,10 @@ body {
     background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594038361/Hackathon/INdex/mosaic-alien-on-wall-1670977_2_1_boqivg.jpg");
 }
 
+.noentry-banner {
+    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594155386/Hackathon/photo-of-lego-toy-miniatures-3806754_1_1_qvuada.jpg");
+}
+
 /* Styling for list of activities */
 
 .activities {
@@ -98,10 +102,11 @@ body {
 
 .activity-btn:hover {
     color: #c38d9e;
+    text-decoration: none;
 }
 
 .card-header {
-    background-color: #ffefff;
+    background-color: rgba(23, 23, 23, 0.7);
 }
 
 .btn-activity-done {

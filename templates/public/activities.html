@@ -2,80 +2,79 @@
 
 {% block title %}Activities{% endblock %}
 
-{% block header %}
-
-<header class="home-banner text-center text-white">
-  <div class="banner-content">
-    <div class="container">
-      <h1 class="masthead-heading mb-0">ACTIVITIES</h1>
-    </div>
-  </div>
-</header>
-
-{% endblock %}
-
 {% block content %}
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="flashes">
+<div class="row no-gutters text-center">
+  <div class="col-12 p-3">
+    <h1>Add Activity</h1>
+    <hr>
 
-  {% for message in messages %}
-  <strong class="flash-color">
-    {{ message }}
-  </strong>
-  {% endfor %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flashes">
 
-</div>
-{% endif %}
-{% endwith %}
+      {% for message in messages %}
+      <strong class="flash-color">
+        {{ message }}
+      </strong>
+      {% endfor %}
 
-<div class="activities" id="activities">
+    </div>
+    {% endif %}
+    {% endwith %}
 
-  {% if activities %}
+    <div class="row no-gutters justify-content-center">
+      <div class="col-12 col-lg-6 text-center">
+        <div class="activities" id="activities">
+          {% if activities %}
 
-  {% for activity in activities %}
-  <div class="accordion" id="activity{{loop.index}}">
-    <div class="card">
-      <div class="card-header" id="heading{{loop.index}}">
-        <h2 class="mb-0">
-          <button class="btn btn-link activity-btn" type="button" data-toggle="collapse"
-            data-target="#collapse{{loop.index}}" {% if loop.index == 1 %}aria-expanded="true" {% endif%}
-            aria-controls="collapse{{loop.index}}">
-            {{ activity.name }}
-          </button>
-        </h2>
-      </div>
-      <div id="collapse{{loop.index}}" class="collapse{% if loop.index == 1 %} show{% endif %}"
-        aria-labelledby="heading{{loop.index}}" data-parent="#activities">
-        <div class="card-body">
-          {% if activity.requirements %}
-          <p><strong>You'll need:</strong> {{ activity.requirements }}</p>
+          {% for activity in activities %}
+          <div class="accordion" id="activity{{loop.index}}">
+            <div class="card">
+              <div class="card-header" id="heading{{loop.index}}">
+                <h2 class="mb-0">
+                  <button class="btn btn-link activity-btn" type="button" data-toggle="collapse"
+                    data-target="#collapse{{loop.index}}" {% if loop.index == 1 %}aria-expanded="true" {% endif%}
+                    aria-controls="collapse{{loop.index}}">
+                    {{ activity.name }}
+                  </button>
+                </h2>
+              </div>
+              <div id="collapse{{loop.index}}" class="collapse{% if loop.index == 1 %} show{% endif %}"
+                aria-labelledby="heading{{loop.index}}" data-parent="#activities">
+                <div class="card-body">
+                  {% if activity.requirements %}
+                  <p><strong>You'll need:</strong> {{ activity.requirements }}</p>
+                  {% endif %}
+                  <p>{{ activity.description }}</p>
+
+                  <form id="form{{loop.index}}" enctype="multipart/form-data"
+                    action="{{url_for('complete', activity_id = activity._id)}}" method="POST">
+                    {% if activity.has_photo %}
+                    <p> For this task, you have the ability to save a picture to show it to your friends.</p>
+                    <input type="file" name="image" capture accept="image/*">
+                    {% endif %}
+                    <input type="submit" class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3"
+                      value="I have finished this!">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+          {% else %}
+
+          <p>Congratulations on completing all the activities!</p>
+          <p><a href="{{ url_for('reset_activities') }}">Click here if you would like to start over.</a></p>
+
           {% endif %}
-          <p>{{ activity.description }}</p>
-
-
-          <form id="form{{loop.index}}" enctype="multipart/form-data"
-            action="{{url_for('complete', activity_id = activity._id)}}" method="POST">
-            {% if activity.has_photo %}
-            <p> For this task, you have the ability to save a picture to show it to your friends.</p>
-            <input type="file" name="image" capture accept="image/*">
-            {% endif %}
-            <input type="submit" class="button btn-primary btn-activity-done ml-auto mr-auto d-block mt-3"
-              value="I have finished this!"></form>
-
         </div>
       </div>
     </div>
-  </div>{% endfor %}
-
-  {% else %}
-
-  <p>Congratulations on completing all the activities!</p>
-  <p><a href="{{ url_for('reset_activities') }}">Click here if you would like to start over.</a></p>
-
-  {% endif %}
-
-
+  </div>
 </div>
-{% endblock %}
+
+
+
+  {% endblock %}
