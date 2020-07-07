@@ -151,6 +151,13 @@ def complete(activity_id):
 @app.route('/activity_manager', methods=["POST", "GET"])
 def manage_activities():
 
+    """
+    The below is used within the Moderator Site to upload new activities 
+    for the users so that they appear in the activities page.
+    As the requirements field in the form is not required, it checks if it is blank
+    and if it is, then it will not upload it to the DB. /Andy
+    """
+
     if request.method == "POST":
         req = request.form
         new_task = {
