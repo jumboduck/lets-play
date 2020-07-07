@@ -25,7 +25,7 @@ body {
 }
 
 .navbar-custom {
-    background-color: #929191;
+    background-color: rgb(109, 103, 103);
 }
 
 /* Font Styling */
@@ -35,13 +35,13 @@ body {
     font-size: .8rem;
     font-weight: 700;
     letter-spacing: .1rem;
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, 1);
     padding: .5rem 1rem;
     margin: .5rem;
 }
 
 .menu-link:hover {
-    color: rgb(72, 5, 57);
+    color: rgb(136, 241, 241);
     text-decoration: none;
 }
 
@@ -98,10 +98,11 @@ body {
 
 .activity-btn:hover {
     color: #c38d9e;
+    text-decoration: none;
 }
 
 .card-header {
-    background-color: #ffefff;
+    background-color: rgba(23, 23, 23, 0.7);
 }
 
 .btn-activity-done {
