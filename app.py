@@ -4,6 +4,9 @@ from flask import session, flash
 from flask_pymongo import PyMongo
 from passlib.hash import pbkdf2_sha256
 from bson.objectid import ObjectId
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Password and datetime look optional (Pasha)
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from datetime import datetime
@@ -18,6 +21,7 @@ app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'letsplay'
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET')
+app.config['CLOUDINARY_URL'] = os.environ.get('CLOUDINARY_URL')
 
 mongo = PyMongo(app)
 
@@ -111,10 +115,21 @@ def activities():
     return render_template('public/activities.html', session=session, activities=available_activities)
 
 
-@app.route('/complete/<activity_id>')
+@app.route('/complete/<activity_id>', methods = ["POST", "GET"])
 def complete(activity_id):
     users = mongo.db.users
-    users.update(
+    images = mongo.db.images
+    if request.files['image'] is not None:
+        print ("there is an image input in this form!")
+        image = request.files['image']
+        uploaded_image = cloudinary.uploader.upload(image, width = 800, quality = 'auto')
+        image_url = uploaded_image.get('secure_url')
+        images.insert({
+            'image_url': image_url,
+            'user': session['username'],
+            'reactions': {}
+        })
+    users.update_one(
         {'username': session['username']},
         {'$push': {
             'accomplished': ObjectId(activity_id)
