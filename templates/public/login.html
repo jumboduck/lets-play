@@ -4,15 +4,15 @@
 
 {% block header %}
 
-<header class="login-banner text-center text-white banner-settings">	
-  <div class="banner-content">	
-    <div class="container">	
-      <h1 class="masthead-heading mb-0">Let's Play</h1>	
-      <h2 class="masthead-subheading mb-0">Be Creative and Have Fun!</h2>	
-      <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>	
-    </div>	
-  </div>	
-</header>	
+<header class="login-banner text-center text-white banner-settings">
+    <div class="banner-content">
+        <div class="container">
+            <h1 class="masthead-heading mb-0">Let's Play</h1>
+            <h2 class="masthead-subheading mb-0">Be Creative and Have Fun!</h2>
+            <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+        </div>
+    </div>
+</header>
 
 {% endblock %}
 
@@ -22,7 +22,7 @@
     <div class="col-12 col-lg-3 text-center">
         <div class="container-fluid center-form">
             <div class="header">
-                <h1>Login</h1>
+                <h2 class="page-title">Login</h2>
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center text-sm-center text-lg-left">
@@ -40,17 +40,17 @@
 
                             {% with messages = get_flashed_messages() %}
                             {% if messages %}
-                                <div class="flashes">
-    
-                                    {% for message in messages %} 
-                                        <strong class="flash-color">
-                                            {{ message }}                                                                
-                                        </strong>
-                                    {% endfor %}
-    
-                                </div>
+                            <div class="flashes">
+
+                                {% for message in messages %}
+                                <strong class="flash-color">
+                                    {{ message }}
+                                </strong>
+                                {% endfor %}
+
+                            </div>
                             {% endif %}
-                        {% endwith %}
+                            {% endwith %}
 
                         </fieldset>
                         <div class="form-group text-center">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="text-center">
                             <p>Don't have an account? <a href="{{url_for('register')}}">Sign Up Here</a></p>
-                        </div>    
+                        </div>
                     </form>
                 </div>
             </div>

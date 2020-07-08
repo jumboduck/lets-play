@@ -22,6 +22,7 @@ body {
 
 .navbar-brand img {
     width: 70px;
+    filter: invert(1);
 }
 
 .navbar-custom {
@@ -49,6 +50,11 @@ body {
     margin: 0 0.8rem;
 }
 
+h2.page-title {
+    text-align: center;
+    margin: 2rem;
+}
+
 /* Banner Styling and Images */
 
 .banner-settings {
@@ -74,6 +80,7 @@ body {
     right: -100%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    padding: 1.5rem;
 }
 
 .login-banner {
