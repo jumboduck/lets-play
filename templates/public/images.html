@@ -23,6 +23,8 @@
             <img src="{{ image.image_url }}" class="w-100">
             <p>Image by {{ image.user }}</p>
             <div class="image-reactions">
+
+                {% if session %}
                 <p class="update-reaction"><a
                         href="{{url_for('update_reaction', image_id = image._id, reaction = "thumbsup")}}">👍</a>:
                     {{image.reactions.thumbsup}}</p>
@@ -35,6 +37,16 @@
                 <p class="update-reaction"><a
                         href="{{url_for('update_reaction', image_id = image._id, reaction = "happy")}}">😀</a>:
                     {{image.reactions.happy}}</p>
+                {% else %}
+                <p class="update-reaction">👍:
+                    {{image.reactions.thumbsup}}</p>
+                <p class="update-reaction">😍:
+                    {{image.reactions.heart}}</p>
+                <p class="update-reaction">😂:
+                    {{image.reactions.laugh}}</p>
+                <p class="update-reaction">😀:
+                    {{image.reactions.happy}}</p>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

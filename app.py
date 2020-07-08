@@ -134,7 +134,11 @@ def complete(activity_id):
             'user': session['username'],
             'reactions': {'thumbsup': 0, 'heart': 0, 'laugh': 0, 'happy': 0},
             'timestamp': datetime.now(),
-            'approved': False
+            'approved': False,
+            "thumbsup_by": [],
+            "heart_by": [],
+            "laugh_by": [],
+            "happy_by": []
         })
     # Update user document with accomplished activity
     users.update_one(
@@ -175,9 +179,21 @@ def images():
 @app.route('/update_reaction/<image_id>/<reaction>')
 def update_reaction(image_id, reaction):
     images = mongo.db.images
-    images.update_one(
-        {'_id': ObjectId(image_id)},
-        {'$inc':{"reactions." + reaction : 1}})
+    image = images.find_one({'_id': ObjectId(image_id)})
+    if session['username'] not in image[reaction + "_by"]:
+        images.update_one(
+            {'_id': ObjectId(image_id)},
+            {
+                '$inc': {"reactions." + reaction : 1},
+                "$push" : {reaction + "_by": session['username']}
+            })
+    else:
+        images.update(
+            {'_id': ObjectId(image_id)},
+            {
+                "$inc": {"reactions." + reaction : -1},
+                "$pull" : {reaction + "_by": session['username']}
+        })
     return redirect(url_for('images'))
 
 
