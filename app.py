@@ -179,12 +179,13 @@ def images():
 @app.route('/update_reaction/<image_id>/<reaction>')
 def update_reaction(image_id, reaction):
     images = mongo.db.images
-    if session['username'] not in images[reaction + "_by"]:
+    image = images.find_one({'_id': ObjectId(image_id)})
+    if session['username'] not in image[reaction + "_by"]:
         images.update_one(
             {'_id': ObjectId(image_id)},
             {
                 '$inc': {"reactions." + reaction : 1},
-                "$pull" : {reaction + "_by": session['username']}
+                "$push" : {reaction + "_by": session['username']}
             })
     else:
         images.update(
