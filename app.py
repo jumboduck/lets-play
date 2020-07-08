@@ -172,12 +172,40 @@ def images():
     return render_template('public/images.html', images = images)
 
 
+"""
+if user_name not in images["liked_by"]:
+        images.update(
+            {'_id': ObjectId(image_id)},
+            {
+                "$inc": {"likes": 1},
+                "$push" : {"liked_by": user_name}
+        })
+    else:
+        images.update(
+            {'_id': ObjectId(image_id)},
+            {
+                "$inc": {"likes": -1},
+                "$pull" : {"liked_by": user_name}
+        })
+"""
+
 @app.route('/update_reaction/<image_id>/<reaction>')
 def update_reaction(image_id, reaction):
     images = mongo.db.images
-    images.update_one(
-        {'_id': ObjectId(image_id)},
-        {'$inc':{"reactions." + reaction : 1}})
+    if session['username'] not in images[reaction + "_by"]:
+        images.update_one(
+            {'_id': ObjectId(image_id)},
+            {
+                '$inc': {"reactions." + reaction : 1},
+                "$pull" : {reaction + "_by": session['username']}
+            })
+    else:
+        images.update(
+            {'_id': ObjectId(image_id)},
+            {
+                "$inc": {"reactions." + reaction : -1},
+                "$pull" : {reaction + "_by": session['username']}
+        })
     return redirect(url_for('images'))
 
 
