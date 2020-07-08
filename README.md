@@ -99,6 +99,8 @@ The following section describes the process we undertook to deploy this project 
 
 3. The ability for users to suggest new activities, which would have to be approved by the moderator.
 
+4. The creation of a profile page for each user, along with badges won for completing activities.
+
 ## Technologies Used
 
 [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML)
