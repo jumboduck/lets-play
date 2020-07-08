@@ -23,44 +23,46 @@
         <div class="col-12">
             <h3 class="front-header">Recently Added</h3>
         </div>
-        {% for image in images %}
-        <div class="col-6 col-lg-3 recent-image">
-            <img class="index-image" src="{{ image.image_url }}" alt="Image by {{ image.user }}">
-            <p>Image by {{ image.user }}</p>
+        <div class="card-columns">
+            {% for image in images %}
+            <div class="card p-2">
+                <img class="card-img-top" src="{{ image.image_url }}" alt="Image by {{ image.user }}">
+                <p class="text-center">Image by {{ image.user }}</p>
 
-            <div class="image-reactions d-inline-flex">
+                <div class="image-reactions d-inline-flex">
 
-                {% if session %}
-                <p class="update-reaction p-2">
-                    <button id="thumbsup-{{loop.index}}" image-id="{{image._id}}"
-                        class="thumbsup-link reaction-link {% if session['username'] in image.thumbsup_by %} selected {% endif %}">👍:
-                        <span id="thumbsup-num-{{loop.index}}">{{image.reactions.thumbsup}}</span></button></p>
-                <p class="update-reaction p-2">
-                    <button id="heart-{{loop.index}}" image-id="{{image._id}}" class=" heart-link
+                    {% if session %}
+                    <p class="update-reaction p-2">
+                        <button id="thumbsup-{{loop.index}}" image-id="{{image._id}}"
+                            class="thumbsup-link reaction-link {% if session['username'] in image.thumbsup_by %} selected {% endif %}">👍:
+                            <span id="thumbsup-num-{{loop.index}}">{{image.reactions.thumbsup}}</span></button></p>
+                    <p class="update-reaction p-2">
+                        <button id="heart-{{loop.index}}" image-id="{{image._id}}" class=" heart-link
                         reaction-link {% if session['username'] in image.heart_by %} selected {% endif %}">😍:
-                        <span id="heart-num-{{loop.index}}">{{image.reactions.heart}}</span></button></p>
-                <p class="update-reaction p-2">
-                    <button id="laugh-{{loop.index}}" image-id="{{image._id}}" class=" laugh-link
+                            <span id="heart-num-{{loop.index}}">{{image.reactions.heart}}</span></button></p>
+                    <p class="update-reaction p-2">
+                        <button id="laugh-{{loop.index}}" image-id="{{image._id}}" class=" laugh-link
                         reaction-link {% if session['username'] in image.laugh_by %} selected {% endif %}">😂:
-                        <span id="laugh-num-{{loop.index}}">{{image.reactions.laugh}}</span></button></p>
-                <p class="update-reaction p-2">
-                    <button id="happy-{{loop.index}}" image-id="{{image._id}}" class=" happy-link
+                            <span id="laugh-num-{{loop.index}}">{{image.reactions.laugh}}</span></button></p>
+                    <p class="update-reaction p-2">
+                        <button id="happy-{{loop.index}}" image-id="{{image._id}}" class=" happy-link
                         reaction-link {% if session['username'] in image.happy_by %} selected {% endif %}">😀:
-                        <span id="happy-num-{{loop.index}}">{{image.reactions.happy}}</span></button></p>
-                {% else %}
-                <p class="update-reaction">👍:
-                    {{image.reactions.thumbsup}}</p>
-                <p class="update-reaction">😍:
-                    {{image.reactions.heart}}</p>
-                <p class="update-reaction">😂:
-                    {{image.reactions.laugh}}</p>
-                <p class="update-reaction">😀:
-                    {{image.reactions.happy}}</p>
-                {% endif %}
-            </div>
+                            <span id="happy-num-{{loop.index}}">{{image.reactions.happy}}</span></button></p>
+                    {% else %}
+                    <p class="update-reaction">👍:
+                        {{image.reactions.thumbsup}}</p>
+                    <p class="update-reaction">😍:
+                        {{image.reactions.heart}}</p>
+                    <p class="update-reaction">😂:
+                        {{image.reactions.laugh}}</p>
+                    <p class="update-reaction">😀:
+                        {{image.reactions.happy}}</p>
+                    {% endif %}
+                </div>
 
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </section>
 
