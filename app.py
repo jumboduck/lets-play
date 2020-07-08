@@ -134,7 +134,11 @@ def complete(activity_id):
             'user': session['username'],
             'reactions': {'thumbsup': 0, 'heart': 0, 'laugh': 0, 'happy': 0},
             'timestamp': datetime.now(),
-            'approved': False
+            'approved': False,
+            "thumbsup_by": [],
+            "heart_by": [],
+            "laugh_by": [],
+            "happy_by": []
         })
     # Update user document with accomplished activity
     users.update_one(
@@ -171,23 +175,6 @@ def images():
     images = mongo.db.images.find({'approved': True}).sort([("_id", -1)])
     return render_template('public/images.html', images = images)
 
-
-"""
-if user_name not in images["liked_by"]:
-        images.update(
-            {'_id': ObjectId(image_id)},
-            {
-                "$inc": {"likes": 1},
-                "$push" : {"liked_by": user_name}
-        })
-    else:
-        images.update(
-            {'_id': ObjectId(image_id)},
-            {
-                "$inc": {"likes": -1},
-                "$pull" : {"liked_by": user_name}
-        })
-"""
 
 @app.route('/update_reaction/<image_id>/<reaction>')
 def update_reaction(image_id, reaction):
