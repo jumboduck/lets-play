@@ -29,7 +29,7 @@
                 <img class="card-img-top" src="{{ image.image_url }}" alt="Image by {{ image.user }}">
                 <p class="text-center">Image by {{ image.user }}</p>
 
-                <div class="image-reactions d-inline-flex">
+                <div class="image-reactions d-inline-flex justify-content-center w-100">
 
                     {% if session %}
                     <p class="update-reaction p-2">
@@ -49,13 +49,13 @@
                         reaction-link {% if session['username'] in image.happy_by %} selected {% endif %}">😀:
                             <span id="happy-num-{{loop.index}}">{{image.reactions.happy}}</span></button></p>
                     {% else %}
-                    <p class="update-reaction">👍:
+                    <p class="update-reaction m-2">👍:
                         {{image.reactions.thumbsup}}</p>
-                    <p class="update-reaction">😍:
+                    <p class="update-reaction m-2">😍:
                         {{image.reactions.heart}}</p>
-                    <p class="update-reaction">😂:
+                    <p class="update-reaction m-2">😂:
                         {{image.reactions.laugh}}</p>
-                    <p class="update-reaction">😀:
+                    <p class="update-reaction m-2">😀:
                         {{image.reactions.happy}}</p>
                     {% endif %}
                 </div>
