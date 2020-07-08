@@ -179,7 +179,7 @@ def images():
     return render_template('public/images.html', images=images)
 
 
-@app.route('/update_reaction/<image_id>/<reaction>')
+@app.route('/update_reaction/<image_id>/<reaction>', methods = ["POST", "GET"])
 def update_reaction(image_id, reaction):
     images = mongo.db.images
     image = images.find_one({'_id': ObjectId(image_id)})
@@ -190,15 +190,16 @@ def update_reaction(image_id, reaction):
                 '$inc': {"reactions." + reaction: 1},
                 '$push': {reaction + "_by": session['username']}
             })
+            
     else:
-        images.update(
+        images.update_one(
             {'_id': ObjectId(image_id)},
             {
                 '$inc': {"reactions." + reaction: -1},
                 '$pull': {reaction + "_by": session['username']}
         })
-    reaction_value = image["reactions"][reaction]
-    return jsonify({'new_value': reaction_value })
+    reaction_value = images.find_one({'_id': ObjectId(image_id)})['reactions'][reaction]
+    return jsonify({ 'new_value': reaction_value })
 
 
 @app.route('/moderator')
