@@ -143,7 +143,7 @@ body {
 .reaction-link {
     border: 1px solid #454545;
     border-radius: 1rem;
-    transition: 0.3s;
+    transition: transform 0.3s;
 }
 
 .reaction-link:hover {

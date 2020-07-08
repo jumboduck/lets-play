@@ -4,7 +4,7 @@ $(document).on("click", ".reaction-link", function () {
     let imageId = $(this).attr("image-id");
     let displayElement = `#${reaction}-num-${loop}`;
     let url = `/update_reaction/${imageId}/${reaction}`;
-    sendReaction(url, displayElement);
+    sendReaction(url, $(this), displayElement);
 });
 
 // Get the number at the end of id, helps us determine which image is targeted
@@ -18,11 +18,12 @@ function getReactionFromId(id) {
 }
 
 // Update fields in db
-function sendReaction(url, feedbackEl) {
+function sendReaction(url, button, feedbackEl) {
     $.ajax({
         type: "POST",
         url: url,
     }).done((data) => {
         $(feedbackEl).text(data.new_value);
+        button.toggleClass("selected");
     });
 }
