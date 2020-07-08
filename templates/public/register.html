@@ -4,15 +4,15 @@
 
 {% block header %}
 
-<header class="register-banner banner-settings text-center text-white">	
-    <div class="banner-content">	
-      <div class="container-fluid">	
-        <h1 class="masthead-heading mb-0">Let's Play</h1>	
-        <h2 class="masthead-subheading mb-0">Be Creative and Have Fun!</h2>	
-        <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>	
-      </div>	
-    </div>	
-  </header>	
+<header class="register-banner banner-settings text-center text-white">
+    <div class="banner-content">
+        <div class="container-fluid">
+            <h1 class="masthead-heading mb-0">Let's Play</h1>
+            <h2 class="masthead-subheading mb-0">Be Creative and Have Fun!</h2>
+            <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+        </div>
+    </div>
+</header>
 
 {% endblock %}
 
@@ -22,7 +22,7 @@
     <div class="col-12 col-lg-3 text-center">
         <div class="container-fluid center-form">
             <div class="header">
-                <h1>Sign Up</h1>
+                <h2 class="page-title">Sign Up</h2>
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center text-sm-center text-lg-left">
@@ -39,22 +39,23 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="confirm-password">Confirm Password</label>
-                                <input class="form-control" type="password" name="confirm-password" id="confirm-password" required>
+                                <input class="form-control" type="password" name="confirm-password"
+                                    id="confirm-password" required>
                             </div>
 
                             {% with messages = get_flashed_messages() %}
                             {% if messages %}
-                                <div class="flashes">
-    
-                                    {% for message in messages %} 
-                                        <strong class="flash-color">
-                                            {{ message }}                                                                
-                                        </strong>
-                                    {% endfor %}
-    
-                                </div>
+                            <div class="flashes">
+
+                                {% for message in messages %}
+                                <strong class="flash-color">
+                                    {{ message }}
+                                </strong>
+                                {% endfor %}
+
+                            </div>
                             {% endif %}
-                        {% endwith %}
+                            {% endwith %}
 
                         </fieldset>
                         <div class="form-group text-center">
@@ -62,7 +63,7 @@
                         </div>
                         <div class="text-center">
                             <p>Already have an account? <a href="{{url_for('login')}}">Login Here</a></p>
-                        </div>    
+                        </div>
                     </form>
                 </div>
             </div>

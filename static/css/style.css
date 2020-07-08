@@ -50,6 +50,11 @@ body {
     margin: 0 0.8rem;
 }
 
+h2.page-title {
+    text-align: center;
+    margin: 2rem;
+}
+
 /* Banner Styling and Images */
 
 .banner-settings {
