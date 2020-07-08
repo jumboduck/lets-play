@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, jsonify
 from flask import session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -194,7 +194,8 @@ def update_reaction(image_id, reaction):
                 "$inc": {"reactions." + reaction : -1},
                 "$pull" : {reaction + "_by": session['username']}
         })
-    return redirect(url_for('images'))
+    reaction_value = image["reactions"][reaction]
+    return jsonify({'new_value': reaction_value })
 
 
 # Admin Views
