@@ -2,7 +2,7 @@
 
 This project was put together during the July 2020 code institute hackathon.
 
-We were originally a team of 6 people; 5 of us were at various stages in the code institute online course, 1 person had already finished the course. After 2 days that team was reduced to 4 people. The 6 people initially working on the project were: Andy Osborne, Simon Castagna, Leticia Leon, Pavel Zelenin, Deborah Thompson and Dayryl. After the initial call and some initial research on our theme done by Daryl and Leticia, Andon, Simon, Pavel and Deborah continued to work on the project from Sunday 5th July 2020 to Thursday 9th July 2020.
+We were originally a team of 6 people; 5 of us were at various stages in the code institute online course, 1 person had already finished the course. After 2 days that team was reduced to 4 people. The 6 people initially working on the project were: Andy Osborne, Simon Castagna, Leticia Leon, Pavel Zelenin, Deborah Thompson and Daryl. After the initial call and some initial research on our theme done by Daryl and Leticia, Andon, Simon, Pavel and Deborah continued to work on the project from Sunday 5th July 2020 to Thursday 9th July 2020.
 
 Our brief was to provide an interactive site for children in lockdown. This was taken from a brief based on the theme below. The theme of the Hackathon was Thriving in the New Normal, and teams were asked to focus on coming up with solutions on how we can work, play and connect more effectively in a post-pandemic world. We focused on creating solutions for children aged 6 to 11 to interact with each other. Initially we decided to create a site where children could interact with each other through a range of suggested activities. Parents would create a login and password for the site and then work with their children on a list of activities. Children could complete these independently if they wished. At the end of the activity the parent could tick off the completed activity and upload it to the site. The upload would be supervised by the parent but would also be subject to moderation to ensure that only appropriate images and text were uploaded.
 
@@ -20,17 +20,6 @@ User 2: Older child aged 10 to 11 years old. Fed up with work from school and wo
 
 User 3: Parent of child aged 6 to 11. Parent is fed up with kids being unoccupied,bored, doing little school work, etc so is looking for activities which engage and entertain them. Parent would also like a way to keep track of the activities their children are doing.
 
-Main features of the Lets-Play app are as follows:
-
-1. Each user has a unique username and password. Parent chooses username and password for child to use either independently or with parent's help.
-2. User logs in or registers on landing page then is directed to activities page.
-3. User is then given list of activites to do.
-4. User can choose which activity to do and then do that activity, uploading a picture (under adult supervision) of themselves doing the activity.
-5. Uploaded images along with description of activity go to moderator area where they are reviewed and if ok approved to go onto site.
-6. Users can then see uploaded activities and vote for these.
-7. User doing activities can then do another activity from the list, ticking off the activities they have done so far and uploading images and description as described above. Further images and descriptions will be subject to moderation.
-8. Once user has come to the end of the activity list they can hit the reset button to restart the list of activities.
-
 Wireframes were an integral part of the development process. I designed these at the start of the project but as time went by they needed
 several revisions [wireframes](https://github.com/debbiect246/recipe-app/blob/master/UX/wireframe.pdf) to see the final versions of my wireframes.
 
@@ -39,18 +28,17 @@ several revisions [wireframes](https://github.com/debbiect246/recipe-app/blob/ma
 The features which were implemented successfully are shown below:
 
 1. Each user has a unique username and password.  
-   Achieved through use of login page. Users are stored in a collection in the database- they are authenticated against
-   this when they log in.
+   Achieved through use of login page. The password is hashed and salted Users are stored in a collection in the database- they are authenticated agains this when they log in.
 
 2. User logs in or registers on landing page then is directed to activities page. User is directed to activities page as soon as they are logged in.
 
 3. User is then given list of activites to do. List of activites to do shows up on page.
 
-4. User can choose which activity to do and then do that activity, uploading a picture (under adult supervision) of themselves doing the activity. User clicks on activity to get more details of activity and is then given instructions to do that activity, and hopefully goes away and does it.
+4. User can choose which activity to do and then do that activity. Some activities allow for the user to upload a picture of their project. User clicks on activity to get more details of activity and is then given instructions to do that activity, and hopefully goes away and does it.
 
-5. Uploaded images along with description of activity go to moderator area where they are reviewed and if ok approved to go onto site. User can upload images to moderator area. Security added so that only moderator can access this area. See security notes section below.
+5. Uploaded images go to moderator area where they are reviewed and if ok approved to go onto site. Users can upload images to moderator area. Security was added so that only moderator can access this area. See security notes section below.
 
-6. Users can then see uploaded activities and vote for these. Other users can see activites uploaded by other users and vote for these using voting system.
+6. Images uploaded by users are displayed on the images page. If a user is logged in, they have the ability to react to it by choosing between four reactions represented by emojis.
 
 7. User doing activities can then do another activity from the list, ticking off the activities they have done so far and uploading images and description as described above. Further images and descriptions will be subject to moderation. User can choose from remaining list of activities displayed and repeat process.
 
@@ -58,32 +46,40 @@ The features which were implemented successfully are shown below:
 
 ## Security features
 
-Andy's work:
-From a user security standpoint, I implemented password hashing/salting so that no-one else can see/know a users password apart from the person who created.In addition to this, the flash messages will say "Incorrect username/password combination" to add that extra bit of security and not help a "hacker" know which one is incorrect.I will change the current functionality of login, as if the username does not exist, it takes them to the registration page -> which would be a big clue for a hacker trying to get into someones account.
+From a user security standpoint, we implemented password hashing and salting so that no-one else can see or know a users password apart from the person who created. In addition to this, the flash messages will say "Incorrect username/password combination" to not help a "hacker" know which one is incorrect.
 
-I've now introduced conditional logic to the moderator pages that if the users status is not "admin" then they cannot see the information on the page, as before, if anyone went to the URL for the moderator pages, they could see and interact with it.
+Additionally conditional logic was added to the moderator pages so that if the users status is not "admin" they cannot see the information on the page. Before this update, if anyone went to the URL for the moderator pages, they would be able to see it and interact with it.
 
 ## Development process of the project
 
-1. Simon created a repo for the project on gihub. The repo contained a skeleton format for the project: static folder, templates folder, procfile, readme and app.py files were inclduded.
+1. Simon created a repository for the project on gihub. The repository contained a skeleton format for the project: static folder, templates folder, procfile, readme and app.py files were inclduded.
+
 2. All members of the team forked the repo then cloned it locally. All members of the team were then able to create their own branches and issue pull requests for their code.
+
 3. Next thing was to create a base template html file to control the overall look of the site.
+
 4. In the app.py file all modules that were needed were imported and a secret key was set. Debug to True so that an error log would be produced for any errors encounered when running the project.
 
-5. The procfile and requirements. txt files were regularly updated 6. An admin user was created for the moderator, noting this format as I would need it later to put in the config.py file `mongodb://<dbuser>:<dbpassword>@XXXXXX.mlab.com:XXXXX/recipe_manager`
-6. Activities were created and entered into the activities collection.
+5. The procfile and requirements. txt files were regularly updated
 
-7. We connected the app.py file to the database. We entered the environment details in to the config.py file and then put this in gitignore. The procfile and requirements.txt files were updated.
-8. Lastly we checked that the entire app worked before doing a final push to heroku, making sure that the environment variables were correctly input into the heroku dashboard for the app and that debug was set to false so that the app was secure.
+6. An admin user was created for the moderator, noting this format as it would later be needed to put in the config.py file `mongodb://<dbuser>:<dbpassword>@XXXXXX.mlab.com:XXXXX/recipe_manager`
 
-9. Finally we created a favicon for the app.
+7. Activities were created and entered into the activities collection.
+
+8. A cloudinary account was created to upload images to and its API url added to the env.py file
+
+9. We connected the app.py file to the database. We entered the environment details in to the env.py file and then put this in gitignore. The procfile and requirements.txt files were updated.
+
+10. Lastly we checked that the entire app worked before doing a final push to heroku, making sure that the environment variables were correctly input into the heroku dashboard for the app and that debug was set to false so that the app was secure.
+
+11. Finally we created a favicon for the app.
 
 ## Deployment
 
 The following section describes the process we undertook to deploy this project to Heroku. Work done on pushing to heroku started by Simon, checked by Andy and Pasha.
 
--   We ensured that all required technologies were installed locally, as per the requirements.txtfile.
--   We ensured that we had created a procfile indicating that the app was based on python.
+-   We ensured that all required technologies were installed locally, as per the requirements.txt file.
+-   We ensured that we had created a Procfile indicating that the app was based on python.
 -   We used the bash terminal to log in to Heroku, using 'heroku login' command. Input Heroku login details.
 -   We then created a new Heroku app, using `heroku apps:create appname` command from the terminal.
 -   We pushed my project to Heroku, using `push -u heroku master` command from the terminal.
@@ -92,7 +88,8 @@ The following section describes the process we undertook to deploy this project 
 -   We then selected settings. Select 'Reveal Config'. I then added IP 0.0.0.0 and PORT 5000.
 -   Then from the 'More' menu on the top right, we selected 'Restart all dynos'.
 -   To view the app, in settings we selected the Domain URL, NOT Git URL to view your hosted application.
--   We checked that my app was now deployed via Heroku
+-   We checked that the app was now deployed via Heroku
+-   The application on heroku was connected to Simon's repository on Github to ensure it would be updated with each of the team's merges
 
 ## Features which could be implemented in the future
 
@@ -100,10 +97,11 @@ The following section describes the process we undertook to deploy this project 
 
 2. Statistics on user ratings for each activity. A ratings collection could be used for this. The ratings could be implemented using a number of technologies including crossfilter and matlab.
 
+3. The ability for users to suggest new activities, which would have to be approved by the moderator.
+
 ## Technologies Used
 
 [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML)
-
 Hypertext markup language is used to create the structure of web pages. It consists of tags which tell the browser
 how to set out text and images on the page. Hypertext is the method by which you move around on the web, markups are the tags
 which set out the structure of the webpage, thus HTML is a language for web creation with its own structure and syntax. The data in the tags is read by the web browser enabling you to create any web page you like. In this project my templates are all written in HTML. The base template sets out the way in which
@@ -111,13 +109,7 @@ the website should look and information from this is used in each of the other t
 
 [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS) stands for Cascading Style sheets which is a type of style language which sets out how the webpage should be styled. It allows the user to style the webpage in a particular way, making the UX richer and more meaningful for the user.
 
-[Materialisecss](https://materializecss.com/) is a modern responsive framework developed by google. It has built in classes which allow websites to
-be responsive when viewed on any device. It also has many components which enhance the appearance of a webpage, e.g. forms, icons,
-badges, buttons. All these save the user time when desigining a website and enhance the UX. It is also designed to speed up
-development time and is easy to use. I used version 0.100.2 - the most stable version as advised by CI.
-
 [Flask](http://flask.pocoo.org/)
-
 Flask is a microframework written in python. Flask is therefore the "glue" that holds an application together. Different types of file can co-exist in a flask application, with the base template holding the HTML base code for other templates. In addition flask provides security throught the wekzeug add in and the jinja templating language can also be used for markup on web pages.
 
 [Jinja2](http://jinja.pocoo.org/docs/2.10/) is a templating language which is used for rendering data in html templates and is used for communication between the front end and back end of an app.
@@ -126,8 +118,7 @@ Flask is a microframework written in python. Flask is therefore the "glue" that 
 on websites. The \$ sign signals to the browser that jquery is being used.
 
 [python](https://www.python.org/)
-
-We used Python version 3.7 to run my app. Python is a high level programming language used for apps in many frameworks such as
+We used Python version 3.7 to run our app. Python is a high level programming language used for apps in many frameworks such as
 flask, pyramid and django. Python supports many programming paradigms and is object orientated and has a comprehensive set of libraries.
 Python is managed by a non profit organsation the Python software foundation.
 
@@ -139,30 +130,36 @@ deploying an app relatively straightforward.
 [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools/) were used to work on my code. Chrome dev tools are a set of tools designed to give the developer tools
 to amend code in a testing environment in order to enhance the UX and functionality experience. I was also able to test the responsiveness of my app using these tools.
 
+[Cloudinary](https://cloudinary.com/) is an image hosting site with a very rich API, allowing to upload and transform images.
+
+Alongside jQuery, AJAX was used for users to react to images and for these reactions to display without the page reloading entirely.
+
 ## Testing
 
 Testing was carried out by human beings. Details of testing done by testers on a page by page basis is shown below.
 
 1. Button ”Learn More” leads nowhere. (That is a problem with base.html !!!)
-2. In top nav menu there is no distance between ”Sign Up” and ”Log In” (That is a problem with base.html or the corresponding .css!!!)2) ’/home’
+2. In top nav menu there is no distance between ”Sign Up” and ”Log In” (That is a problem with base.html or the corresponding .css)
 3. The page is still just a placeholder.
 4. In top nav menu there is no distance between ”Home”, ”Activities for you” and ”Log Out” (see above 1.2).
 5. Home in top nav menu redirects not to ’/home’ but to ’/ explanation that an image is uploaded only when ”I HAVE FINISHED THIS!” button is pressed54 ’/activity_manager
 6. It’s possible to add activity but it’s not possible to remove one.
-7. Maybe it’s better to call this ”Add a new activity”.5) ’/moderator’
+7. Maybe it’s better to call this ”Add a new activity”.
 8. Maybe it’s better to call this ”Approve/reject images”.
 
 -   Log in page:
 
     Ensure that only registered users can login. If an unregistered user tries to log in they are directed to the register page.
 
-![login page](https://github.com/debbiect246/recipe-app/blob/master/static/images/imageofloginpage.jpg)
-
 ## Interesting bugs or problems discovered during testing
 
 ## Credits
 
-Content
+### Content
+
+-   To speed up process of development, the theme [One Page Wonder](https://startbootstrap.com/previews/one-page-wonder/) by startbootstrap was used
+
+-   Images are from ....
 
 Media
 
