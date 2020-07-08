@@ -4,37 +4,43 @@
 
 {% block header %}
 
-<header class="home-banner text-center text-white">
-    <div class="banner-content">
-        <div class="container">
-            <h1 class="masthead-heading mb-0">ACTIVITIES</h1>
-        </div>
-    </div>
-</header>
+<header class="uploads-banner text-center text-white banner-settings">	
+  <div class="banner-content">	
+    <div class="container">	
+      <h1 class="masthead-heading mb-0">Let's Play</h1>	
+      <h2 class="masthead-subheading mb-0">Check out some recent uploads!</h2>	
+    </div>	
+  </div>	
+</header>	
 
 {% endblock %}
 
+
 {% block content %}
 
-<div class="container">
+<section class="container-fluid">
     <div class="row no-gutters">
+        <div class="col-12">
+            <h3 class="front-header">Recently Added</h3>
+        </div>
         {% for image in images %}
-        <div class="col-md-4 p-3">
-            <img src="{{ image.image_url }}" class="w-100">
+        <div class="col-6 col-lg-3 recent-image">
+            <img class="index-image" src="{{ image.image_url }}" alt="Image by {{ image.user }}">
             <p>Image by {{ image.user }}</p>
-            <div class="image-reactions">
+
+            <div class="image-reactions d-inline-flex">
 
                 {% if session %}
-                <p class="update-reaction"><a
+                <p class="update-reaction p-2"><a
                         href="{{url_for('update_reaction', image_id = image._id, reaction = "thumbsup")}}">👍</a>:
                     {{image.reactions.thumbsup}}</p>
-                <p class="update-reaction"><a
+                <p class="update-reaction p-2"><a
                         href="{{url_for('update_reaction', image_id = image._id, reaction = "heart")}}">😍</a>:
                     {{image.reactions.heart}}</p>
-                <p class="update-reaction"><a
+                <p class="update-reaction p-2"><a
                         href="{{url_for('update_reaction', image_id = image._id, reaction = "laugh")}}">😂</a>:
                     {{image.reactions.laugh}}</p>
-                <p class="update-reaction"><a
+                <p class="update-reaction p-2"><a
                         href="{{url_for('update_reaction', image_id = image._id, reaction = "happy")}}">😀</a>:
                     {{image.reactions.happy}}</p>
                 {% else %}
@@ -48,9 +54,13 @@
                     {{image.reactions.happy}}</p>
                 {% endif %}
             </div>
+
         </div>
         {% endfor %}
     </div>
-</div>
+</section>
+
+
+
 
 {% endblock %}
