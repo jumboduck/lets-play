@@ -25,7 +25,7 @@ User 2: Older child aged 10 to 11 years old. Fed up with work from school and wo
 User 3: Parent of child aged 6 to 11. Parent is fed up with kids being unoccupied,bored, doing little school work, etc so is looking for activities which engage and entertain them. Parent would also like a way to keep track of the activities their children are doing.
 
 Wireframes were an integral part of the development process. We designed these at the start of the project but as time went by they needed
-several revisions [wireframes](/readme-files/letsplay-wireframes.pdf) to see the final versions of my wireframes.
+several revisions [wireframes](/readme-files/letsplay-wireframes.pdf) to see the final versions of our wireframes.
 
 ## Features
 
@@ -148,6 +148,15 @@ Testing was carried out by human beings. Details of testing done by testers on a
 
 ### User Section Testing
 
+We tried creating a new acount, ensured that passwords have to match and that an existing username could not be re-used.
+
+We logged in as a user and tested that activities could be completed, and reset.
+
+We made sure images could be uploaded and that the reactions functionality functioned on the images page. We ran into an issue where reactions would not update, this was solved by changing the jQuery library from its slim version to its full version, which contains the ajax functions.
+
+We ensured that logging out works appropriately.
+
+We tested every link in the navigation.
 
 ### Admin Section Testing
 
