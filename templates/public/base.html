@@ -53,27 +53,26 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                {% if not session['username'] %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="menu-link" href="{{ url_for('index') }}">Home</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="menu-link" href="{{ url_for('images') }}">Images</a>
+                        <a class="menu-link" href="{{ url_for('about') }}">About</a>
                     </li>
+
+                    {% if not session['username'] %}
+
                     <li class="nav-item">
                         <a class="menu-link" href="{{ url_for('register') }}">Sign Up</a>
                     </li>
                     <li class="nav-item">
                         <a class="menu-link" href="{{ url_for('login') }}">Log In</a>
                     </li>
-                </ul>
-                {% else %}
-                {% if session['status'] == 'user' %}
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="menu-link" href="{{ url_for('index') }}">Home</a>
-                    </li>
+
+                    {% elif session['status'] == 'user' %}
+
                     <li class="nav-item">
                         <a class="menu-link" href="{{ url_for('activities') }}">Activities for you</a>
                     </li>
@@ -83,13 +82,11 @@
                     <li class="nav-item">
                         <a class="menu-link" href="{{ url_for('logout') }}">Log Out</a>
                     </li>
-                </ul>
-                {% endif %}
-                {% if session['status'] == 'admin' %}
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="menu-link" href="{{ url_for('index') }}">Home</a>
-                    </li>
+
+                    {% endif %}
+
+                    {% if session['status'] == 'admin' %}
+
                     <li class="nav-item">
                         <a class="menu-link" href="{{ url_for('manage_activities') }}">Activities Manager</a>
                     </li>
@@ -99,9 +96,9 @@
                     <li class="nav-item">
                         <a class="menu-link" href="{{ url_for('logout') }}">Log Out</a>
                     </li>
+
+                    {% endif %}
                 </ul>
-                {% endif %}
-                {% endif %}
             </div>
         </div>
     </nav>
@@ -123,9 +120,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
