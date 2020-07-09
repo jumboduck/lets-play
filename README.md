@@ -25,7 +25,7 @@ User 2: Older child aged 10 to 11 years old. Fed up with work from school and wo
 User 3: Parent of child aged 6 to 11. Parent is fed up with kids being unoccupied,bored, doing little school work, etc so is looking for activities which engage and entertain them. Parent would also like a way to keep track of the activities their children are doing.
 
 Wireframes were an integral part of the development process. We designed these at the start of the project but as time went by they needed
-several revisions [wireframes](https://github.com/debbiect246/recipe-app/blob/master/UX/wireframe.pdf) to see the final versions of my wireframes.
+several revisions [wireframes](https://github.com/jumboduck/lets-play/blob/master/readme-files/letsplay-wireframes.pdf) to see the final versions of my wireframes.
 
 ## Features
 
@@ -146,16 +146,14 @@ Alongside jQuery, AJAX was used for users to react to images and for these react
 
 Testing was carried out by human beings. Details of testing done by testers on a page by page basis is shown below.
 
-1. In top nav menu there is no distance between ”Sign Up” and ”Log In” (That is a problem with base.html or the corresponding .css)
-2. The page is still just a placeholder.
-3. Home in top nav menu redirects not to ’/home’ but to ’/ explanation that an image is uploaded only when ”I HAVE FINISHED THIS!” button is pressed54 ’/activity_manager
-4. It’s possible to add activity but it’s not possible to remove one.
-5. Maybe it’s better to call this ”Add a new activity”.
-6. Maybe it’s better to call this ”Approve/reject images”.
+### User Section Testing
 
--   Log in page:
 
-    Ensure that only registered users can login. If an unregistered user tries to log in they are directed to the register page.
+### Admin Section Testing
+
+We logged in as the admin/moderator for the website and tested that when a user uploads an image to the website that it appears in the list to be checked. In addition to this, we thoroughly tested that when an image has been approved that it appears in the images page and that when an image is rejected, it does not.
+
+We tested the Activity Manager page to ensure that when we create a task that it gets pushed through to the current list of activities for the users. No bugs were found
 
 ## Interesting bugs or problems discovered during testing
 
