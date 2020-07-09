@@ -25,7 +25,7 @@ User 2: Older child aged 10 to 11 years old. Fed up with work from school and wo
 User 3: Parent of child aged 6 to 11. Parent is fed up with kids being unoccupied,bored, doing little school work, etc so is looking for activities which engage and entertain them. Parent would also like a way to keep track of the activities their children are doing.
 
 Wireframes were an integral part of the development process. We designed these at the start of the project but as time went by they needed
-several revisions [wireframes](https://github.com/jumboduck/lets-play/blob/master/readme-files/letsplay-wireframes.pdf) to see the final versions of my wireframes.
+several revisions [wireframes](/readme-files/letsplay-wireframes.pdf) to see the final versions of my wireframes.
 
 ## Features
 
@@ -165,7 +165,7 @@ We tested the Activity Manager page to ensure that when we create a task that it
 
 -   All the photos used on the website were taken from [Pexels](https://www.pexels.com/), which is a stock image library.
 
-- The logo was created using [Logomkr](https://logomakr.com/).
+-   The logo was created using [Logomkr](https://logomakr.com/).
 
 Media
 
