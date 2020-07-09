@@ -68,10 +68,6 @@ h2.page-title {
     background-size: cover;
 }
 
-.home-banner {
-    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1593956194/Hackathon/INdex/4k-wallpaper-adorable-blur-boy-1148998_1_1_1_1_khf2uw.jpg");
-}
-
 .banner-content {
     background-color: rgba(146, 145, 145, 0.6);
     position: absolute;
@@ -81,6 +77,14 @@ h2.page-title {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     padding: 1.5rem;
+}
+
+.home-banner {
+    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1593956194/Hackathon/INdex/4k-wallpaper-adorable-blur-boy-1148998_1_1_1_1_khf2uw.jpg");
+}
+
+.about-banner {
+    background-image: url("https://res.cloudinary.com/andy-osborne/image/upload/v1594280759/Hackathon/focus-photo-of-super-mario-luigi-and-yoshi-figurines-163036_1_1_snwnx5.jpg");
 }
 
 .login-banner {

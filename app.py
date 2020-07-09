@@ -31,6 +31,13 @@ def index():
     """
     return render_template('public/index.html', session=session)
 
+@app.route('/about')
+def about():
+    """
+    Renders about page
+    """
+    return render_template('public/about.html', session=session)
+
 
 @app.route('/login', methods=["GET", "POST"])
 def login():

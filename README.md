@@ -2,7 +2,7 @@
 
 This project was put together during the July 2020 code institute hackathon.
 
-We were originally a team of 6 people; 5 of us were at various stages in the code institute online course, 1 person had already finished the course. After 2 days that team was reduced to 4 people. The 6 people initially working on the project were: Andy Osborne, Simon Castagna, Leticia Leon, Pavel Zelenin, Deborah Thompson and Daryl. After the initial call and some initial research on our theme done by Daryl and Leticia, Andon, Simon, Pavel and Deborah continued to work on the project from Sunday 5th July 2020 to Thursday 9th July 2020.
+We were originally a team of 6 people; 5 of us were at various stages in the code institute online course, 1 person had already finished the course. After 2 days that team was reduced to 4 people. The 6 people initially working on the project were: Andy Osborne, Simon Castagna, Leticia Leon, Pavel Zelenin, Deborah Thompson and Daryl. After the initial call and some initial research on our theme done by Daryl and Leticia, Andy, Simon, Pavel and Deborah continued to work on the project from Sunday 5th July 2020 to Thursday 9th July 2020.
 
 Our brief was to provide an interactive site for children in lockdown. This was taken from a brief based on the theme below. The theme of the Hackathon was Thriving in the New Normal, and teams were asked to focus on coming up with solutions on how we can work, play and connect more effectively in a post-pandemic world. We focused on creating solutions for children aged 6 to 11 to interact with each other. Initially we decided to create a site where children could interact with each other through a range of suggested activities. Parents would create a login and password for the site and then work with their children on a list of activities. Children could complete these independently if they wished. At the end of the activity the parent could tick off the completed activity and upload it to the site. The upload would be supervised by the parent but would also be subject to moderation to ensure that only appropriate images and text were uploaded.
 
@@ -24,7 +24,7 @@ User 2: Older child aged 10 to 11 years old. Fed up with work from school and wo
 
 User 3: Parent of child aged 6 to 11. Parent is fed up with kids being unoccupied,bored, doing little school work, etc so is looking for activities which engage and entertain them. Parent would also like a way to keep track of the activities their children are doing.
 
-Wireframes were an integral part of the development process. I designed these at the start of the project but as time went by they needed
+Wireframes were an integral part of the development process. We designed these at the start of the project but as time went by they needed
 several revisions [wireframes](https://github.com/debbiect246/recipe-app/blob/master/UX/wireframe.pdf) to see the final versions of my wireframes.
 
 ## Features
@@ -32,21 +32,23 @@ several revisions [wireframes](https://github.com/debbiect246/recipe-app/blob/ma
 The features which were implemented successfully are shown below:
 
 1. Each user has a unique username and password.  
-   Achieved through use of login page. The password is hashed and salted Users are stored in a collection in the database- they are authenticated agains this when they log in.
+   Achieved through use of login page. The password is hashed and salted. Users are stored in a collection in the database- they are authenticated against this when they log in.
 
 2. User logs in or registers on landing page then is directed to activities page. User is directed to activities page as soon as they are logged in.
 
-3. User is then given list of activites to do. List of activites to do shows up on page.
+3. User is then given list of generated activities to do which appears in their "Activities For You" page.
 
 4. User can choose which activity to do and then do that activity. Some activities allow for the user to upload a picture of their project. User clicks on activity to get more details of activity and is then given instructions to do that activity, and hopefully goes away and does it.
 
-5. Uploaded images go to moderator area where they are reviewed and if ok approved to go onto site. Users can upload images to moderator area. Security was added so that only moderator can access this area. See security notes section below.
+5. Uploaded images go to moderator area where they are reviewed and if ok, approved to go onto the site. Users can upload images to moderator area. Security was added so that only moderator can access this area. See security notes section below.
 
 6. Images uploaded by users are displayed on the images page. If a user is logged in, they have the ability to react to it by choosing between four reactions represented by emojis.
 
 7. User doing activities can then do another activity from the list, ticking off the activities they have done so far and uploading images and description as described above. Further images and descriptions will be subject to moderation. User can choose from remaining list of activities displayed and repeat process.
 
 8. Once user has come to the end of the activity list they can hit the reset button to restart the list of activities. User is able to reset activity list so they can revisit activities and maybe do these better.
+
+9. In the moderator section, the moderator is able to upload further activities to the database which is then pushed out to the list of activities that each user has.
 
 ## Security features
 
@@ -56,23 +58,23 @@ Additionally conditional logic was added to the moderator pages so that if the u
 
 ## Development process of the project
 
-1. Simon created a repository for the project on gihub. The repository contained a skeleton format for the project: static folder, templates folder, procfile, readme and app.py files were inclduded.
+1. We created a master repository for the project on GitHub. The repository contained a skeleton format for the project: static folder, templates folder, Procfile, readme and app.py files were included.
 
 2. All members of the team forked the repo then cloned it locally. All members of the team were then able to create their own branches and issue pull requests for their code.
 
 3. Next thing was to create a base template html file to control the overall look of the site.
 
-4. In the app.py file all modules that were needed were imported and a secret key was set. Debug to True so that an error log would be produced for any errors encounered when running the project.
+4. In the app.py file all modules that were needed were imported and a secret key was set. Debug to True so that an error log would be produced for any errors encountered when running the project.
 
-5. The procfile and requirements. txt files were regularly updated
+5. The Procfile and requirements.txt files were regularly updated.
 
-6. An admin user was created for the moderator, noting this format as it would later be needed to put in the config.py file `mongodb://<dbuser>:<dbpassword>@XXXXXX.mlab.com:XXXXX/recipe_manager`
+6. An admin user was created for the moderator, noting this format as it would later be needed to put in the config.py file `mongodb://<dbuser>:<dbpassword>@XXXXXX.mlab.com:XXXXX/lets_play`
 
 7. Activities were created and entered into the activities collection.
 
 8. A cloudinary account was created to upload images to and its API url added to the env.py file
 
-9. We connected the app.py file to the database. We entered the environment details in to the env.py file and then put this in gitignore. The procfile and requirements.txt files were updated.
+9. We connected the app.py file to the database. We entered the environment details in to the env.py file and then put this in gitignore. The Procfile and requirements.txt files were updated.
 
 10. Lastly we checked that the entire app worked before doing a final push to heroku, making sure that the environment variables were correctly input into the heroku dashboard for the app and that debug was set to false so that the app was secure.
 
@@ -144,14 +146,12 @@ Alongside jQuery, AJAX was used for users to react to images and for these react
 
 Testing was carried out by human beings. Details of testing done by testers on a page by page basis is shown below.
 
-1. Button ”Learn More” leads nowhere. (That is a problem with base.html !!!)
-2. In top nav menu there is no distance between ”Sign Up” and ”Log In” (That is a problem with base.html or the corresponding .css)
-3. The page is still just a placeholder.
-4. In top nav menu there is no distance between ”Home”, ”Activities for you” and ”Log Out” (see above 1.2).
-5. Home in top nav menu redirects not to ’/home’ but to ’/ explanation that an image is uploaded only when ”I HAVE FINISHED THIS!” button is pressed54 ’/activity_manager
-6. It’s possible to add activity but it’s not possible to remove one.
-7. Maybe it’s better to call this ”Add a new activity”.
-8. Maybe it’s better to call this ”Approve/reject images”.
+1. In top nav menu there is no distance between ”Sign Up” and ”Log In” (That is a problem with base.html or the corresponding .css)
+2. The page is still just a placeholder.
+3. Home in top nav menu redirects not to ’/home’ but to ’/ explanation that an image is uploaded only when ”I HAVE FINISHED THIS!” button is pressed54 ’/activity_manager
+4. It’s possible to add activity but it’s not possible to remove one.
+5. Maybe it’s better to call this ”Add a new activity”.
+6. Maybe it’s better to call this ”Approve/reject images”.
 
 -   Log in page:
 
@@ -165,7 +165,9 @@ Testing was carried out by human beings. Details of testing done by testers on a
 
 -   To speed up process of development, the theme [One Page Wonder](https://startbootstrap.com/previews/one-page-wonder/) by startbootstrap was used
 
--   Images are from ....
+-   All the photos used on the website were taken from [Pexels](https://www.pexels.com/), which is a stock image library.
+
+- The logo was created using [Logomkr](https://logomakr.com/).
 
 Media
 
