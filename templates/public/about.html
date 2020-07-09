@@ -8,8 +8,18 @@
     <div class="banner-content">
         <div class="container">
             <h1 class="mb-0">Let's Play</h1>
+            {% if not session['username'] %}
+
             <h2 class="mb-0">Ready to sign up?</h2>
             <a href="{{url_for('register')}}" class="btn btn-primary btn-xl rounded-pill mt-5">Sign Up</a>
+            
+            {% else %}
+            
+            <h2 class="mb-0">Start your activities</h2>
+            <a href="{{url_for('activities')}}" class="btn btn-primary btn-xl rounded-pill mt-5">View Activities</a>
+
+            
+            {% endif %}
         </div>
     </div>
 </header>
