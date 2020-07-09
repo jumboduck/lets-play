@@ -10,7 +10,11 @@ The app was deployed to heroku and can be accessed by clicking on the title abov
 
 ## UX
 
+![Responsive Devices](/readme-files/responsive-screens.png)
+
 Wireframes were created for the project each day. Initially we started with an ambitious design to include a quiz however we needed to downsize this as some of our team were unable to complete the hackathon and we wanted to focus on getting the design up and running as best as we could.
+
+The site was made responsive with bootstrap for ease of use across all device sizes.
 
 ### User stories
 
